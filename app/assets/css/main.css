@@ -3,7 +3,6 @@
    ===================== */
 
 @import "modal-app.css";
-
 :root {
   /* Maroon Palette */
 
@@ -276,4 +275,11 @@ option {
 
 .no-drag {
   app-region: no-drag;
+}
+
+.img-bot {
+  border-radius: 0px;
+  height: 100dvh;
+  max-height: 138px;
+  object-fit: contain;
 }
