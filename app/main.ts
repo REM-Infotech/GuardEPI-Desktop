@@ -10,7 +10,7 @@ if (started) {
   app.quit();
 }
 const appName = import.meta.env.VITE_APP_NAME;
-const createWindow = () => {
+function createWindow() {
   const mainWindow = new BrowserWindow({
     title: appName,
     width: 1280,
@@ -33,14 +33,14 @@ const createWindow = () => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
 
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools({ mode: "detach" });
   } else {
     mainWindow.loadFile(
       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
     );
   }
   IpcApp(mainWindow);
-};
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
