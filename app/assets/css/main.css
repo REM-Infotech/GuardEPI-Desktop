@@ -1,3 +1,272 @@
+/* =====================
+   Imports & Variables
+   ===================== */
+
+@import "modal-app.css";
+
+:root {
+  /* Maroon Palette */
+
+  --color-maroon-50: #b02cf4;
+  --color-maroon-100: #ae27f1;
+  --color-maroon-200: #9f23de;
+  --color-maroon-300: #9520cf;
+  --color-maroon-400: #861cbc;
+  --color-maroon-500: #7c19ae;
+  --color-maroon-600: #6e159b;
+  --color-maroon-700: #64128d;
+  --color-maroon-800: #5a0f80;
+  --color-maroon-900: #4e0c6e;
+  --color-maroon-950: #4a0b6a;
+
+  --color-electric-violet-50: #fcf3ff;
+  --color-electric-violet-100: #f7e3ff;
+  --color-electric-violet-200: #f0cdff;
+  --color-electric-violet-300: #e4a5ff;
+  --color-electric-violet-400: #d36cff;
+  --color-electric-violet-500: #c435ff;
+  --color-electric-violet-600: #b50fff;
+  --color-electric-violet-700: #aa00ff;
+  --color-electric-violet-800: #8706c3;
+  --color-electric-violet-900: #6f079c;
+  --color-electric-violet-950: #4d0076;
+
+  /* Flirt Palette */
+  --color-flirt-50: #fef5fd;
+  --color-flirt-100: #fdeafb;
+  --color-flirt-200: #fad4f4;
+  --color-flirt-300: #f6b1ea;
+  --color-flirt-400: #ef83da;
+  --color-flirt-500: #e154c4;
+  --color-flirt-600: #c534a5;
+  --color-flirt-700: #9c267f;
+  --color-flirt-800: #86226d;
+  --color-flirt-900: #6e2158;
+  --color-flirt-950: #480a36;
+  --color-flirt-1000: #1e0416;
+}
+
+[app-theme="dark"] {
+  --color-primary: var(--color-flirt-50);
+  --color-secondary: var(--color-flirt-100);
+  --color-accent: var(--color-electric-violet-300);
+
+  /* Backgrounds */
+  --bg-input: #771b5b62;
+  --bg-card: var(--color-flirt-950);
+  --bg-accent: var(--color-electric-violet-900);
+  --bg-primary: var(--color-flirt-950);
+  --bg-secondary: color-mix(
+    in srgb,
+    var(--color-flirt-600) calc(1 * 100%),
+    transparent
+  );
+  --bg-box-shadow: 0 0 5px rgba(255, 254, 254, 0.2);
+  --background-color-container: #1e0416;
+  --background-color-content: color-mix(
+    in srgb,
+    var(--color-flirt-800) calc(0.2 * 100%),
+    transparent
+  );
+
+  --bg-card-log: rgba(246, 177, 235, 0.301);
+  --bg-executions: #86226d;
+}
+
+[app-theme="light"] {
+  --color-primary: #29061f;
+  --color-secondary: #480a36;
+  --color-accent: #86226d;
+
+  --bg-card: var(--color-maroon-600);
+  --bg-primary: var(--color-flirt-200);
+  --bg-secondary: color-mix(
+    in srgb,
+    var(--color-flirt-700) calc(0.8 * 100%),
+    transparent
+  );
+
+  --bg-input: #f1bae162;
+  --bg-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  --background-color-container: var(--color-flirt-100);
+  --background-color-content: color-mix(
+    in srgb,
+    var(--color-flirt-100) calc(0.2 * 100%),
+    transparent
+  );
+
+  --bg-card-log: rgb(220, 170, 243);
+  --bg-executions: #fad4f4;
+}
+
+.content {
+  box-sizing: border-box;
+  height: 100dvh;
+  background-color: var(--background-color-content);
+  border-radius: 25.5px;
+}
+
+.bg-primary {
+  background-color: var(--bg-primary) !important;
+  border-radius: 7px;
+}
+
+/* =====================
+   Reset & Base Styles
+   ===================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge antigo */
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+.card-body {
+  border-radius: 0px;
+}
+
 body {
-  background-color: var(--bs-tertiary-bg);
+  min-height: 100dvh;
+  min-width: 100dvw;
+  line-height: 1.5;
+  color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+/* =====================
+   Typography
+   ===================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-primary);
+}
+
+/* =====================
+   Elements
+   ===================== */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =====================
+   Form Elements
+   ===================== */
+
+button,
+input,
+textarea,
+select {
+  border-radius: 4px;
+  border: 1px solid var(--color-accent);
+  background: var(--bg-input);
+  color: var(--color-primary);
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: var(--bg-accent);
+}
+
+[type="text"],
+[type="email"],
+[type="password"] {
+  padding: 0.5em;
+  background-color: var(--bg-input) !important;
+}
+
+input,
+textarea,
+select {
+  color: var(--color-primary) !important;
+  background-color: var(--bg-input) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 5px var(--color-accent) !important;
+  outline: none !important;
+}
+
+option {
+  background-color: var(--bg-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+/* =====================
+   Utility Classes
+   ===================== */
+.window-box {
+  pointer-events: none; /* permite interação com conteúdo abaixo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition:
+    width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999; /* garante que fique por cima */
+}
+
+[class*="card"] {
+  color: var(--color-primary);
+  background-color: var(--bg-card);
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.48) 0px 6px 16px;
+}
+
+/* =====================
+   Scrollbar
+   ===================== */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-accent);
+  border-radius: 8px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26px;
+  z-index: 9998;
 }

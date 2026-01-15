@@ -30,9 +30,16 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    '/home': RouteRecordInfo<
-      '/home',
-      '/home',
+    '/configuracao': RouteRecordInfo<
+      '/configuracao',
+      '/configuracao',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/execucoes': RouteRecordInfo<
+      '/execucoes',
+      '/execucoes',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -40,6 +47,13 @@ declare module 'vue-router/auto-routes' {
     '/login': RouteRecordInfo<
       '/login',
       '/login',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/robot/listagem': RouteRecordInfo<
+      '/robot/listagem',
+      '/robot/listagem',
       Record<never, never>,
       Record<never, never>,
       | never
@@ -63,15 +77,27 @@ declare module 'vue-router/auto-routes' {
       views:
         | never
     }
-    'app/pages/home.vue': {
+    'app/pages/configuracao.vue': {
       routes:
-        | '/home'
+        | '/configuracao'
+      views:
+        | never
+    }
+    'app/pages/execucoes.vue': {
+      routes:
+        | '/execucoes'
       views:
         | never
     }
     'app/pages/login.vue': {
       routes:
         | '/login'
+      views:
+        | never
+    }
+    'app/pages/robot/listagem.vue': {
+      routes:
+        | '/robot/listagem'
       views:
         | never
     }
