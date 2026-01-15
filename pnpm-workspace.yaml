@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - cypress
+  - electron
+  - electron-winstaller
+  - esbuild

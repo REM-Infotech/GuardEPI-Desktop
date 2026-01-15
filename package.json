@@ -1,6 +1,6 @@
 {
-  "name": "ui-crawjud",
-  "productName": "ui-crawjud",
+  "name": "guardepi",
+  "productName": "guardepi",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".vite/build/main.js",
