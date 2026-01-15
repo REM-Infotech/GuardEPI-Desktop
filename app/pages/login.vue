@@ -11,7 +11,7 @@ const HandleLogin = (e: Event) => {
     modelValue: 1500,
   });
 
-  router.push({ name: "home" });
+  router.push({ name: "/home" });
 };
 </script>
 
