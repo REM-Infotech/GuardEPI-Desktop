@@ -21,7 +21,8 @@ import { RouterView } from "vue-router";
 
 <style lang="css" scoped>
 .route {
-  margin-top: 25px;
+  position: relative;
+  margin-top: 75px;
   width: calc(100% - 35px);
   height: calc(100% - 95px);
   padding: 15px;
@@ -30,6 +31,7 @@ import { RouterView } from "vue-router";
 }
 
 .content-app {
+  position: absolute;
   width: 100dvw;
   height: 100dvh;
 
