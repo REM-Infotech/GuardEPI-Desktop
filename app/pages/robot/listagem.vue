@@ -55,7 +55,7 @@ onMounted(async () => {
 
 <style lang="css" scoped>
 .row-bots {
-  height: calc(100dvh - 80px);
+  height: calc(100dvh - 60px);
   overflow: auto;
   box-shadow: 0;
 }

@@ -8,8 +8,8 @@ document.title = appName.value;
   <BApp>
     <Loading />
     <div class="content-app">
-      <Navbar />
       <Sidebar />
+      <Navbar />
       <BContainer fluid class="route">
         <RouterView v-slot="{ Component }">
           <Transition name="page" mode="out-in">
@@ -23,11 +23,9 @@ document.title = appName.value;
 
 <style lang="css" scoped>
 .route {
-  margin-top: 50px;
   position: relative;
   width: calc(100% - 35px);
-  height: calc(100% - 95px);
-  padding: 15px;
+  height: calc(100%);
   border-radius: 5px;
 }
 

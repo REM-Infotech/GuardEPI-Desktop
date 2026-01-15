@@ -4,43 +4,121 @@ import { Offcanvas } from "bootstrap";
 const sidebar = useSidebar();
 
 onMounted(() => {
-  new Offcanvas("#offcanvasExample");
+  new Offcanvas("#offcanvasCrawJUD");
 });
 </script>
 
 <template>
   <div
-    class="offcanvas offcanvas-start"
+    class="offcanvas offcanvas-start offcanvas-md"
     tabindex="-1"
-    id="offcanvasExample"
-    aria-labelledby="offcanvasExampleLabel"
+    id="offcanvasCrawJUD"
+    aria-labelledby="offcanvasCrawjudLabel"
   >
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you
-        have chosen. Like, text, images, lists, etc.
-      </div>
-      <div class="dropdown mt-3">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
+    <div
+      class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
+      style="width: 280px; height: 100%"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+      >
+        <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-4">Sidebar</span>
+      </a>
+      <hr />
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" aria-current="page">
+            <svg
+              class="bi pe-none me-2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use xlink:href="#home"></use>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg
+              class="bi pe-none me-2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use xlink:href="#speedometer2"></use>
+            </svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg
+              class="bi pe-none me-2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use xlink:href="#table"></use>
+            </svg>
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg
+              class="bi pe-none me-2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use xlink:href="#grid"></use>
+            </svg>
+            Products
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <svg
+              class="bi pe-none me-2"
+              width="16"
+              height="16"
+              aria-hidden="true"
+            >
+              <use xlink:href="#people-circle"></use>
+            </svg>
+            Customers
+          </a>
+        </li>
+      </ul>
+      <hr />
+      <div class="dropdown">
+        <a
+          href="#"
+          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown"
+          aria-expanded="false"
         >
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <img
+            src="https://github.com/mdo.png"
+            alt=""
+            width="32"
+            height="32"
+            class="rounded-circle me-2"
+          />
+          <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
       </div>
     </div>

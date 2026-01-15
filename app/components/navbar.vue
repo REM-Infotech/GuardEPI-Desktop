@@ -31,8 +31,8 @@ const closeApp = async () => {
       >
         <BNavbarBrand
           data-bs-toggle="offcanvas"
-          href="#offcanvasExample"
-          aria-controls="offcanvasExample"
+          data-bs-target="#offcanvasCrawJUD"
+          aria-controls="offcanvasCrawJUD"
           class="no-drag"
         >
           NavBar
@@ -80,13 +80,5 @@ const closeApp = async () => {
 .navbar-anim-enter-from,
 .navbar-anim-leave-to {
   opacity: 0;
-}
-
-.drag-window {
-  app-region: drag;
-}
-
-.no-drag {
-  app-region: no-drag;
 }
 </style>

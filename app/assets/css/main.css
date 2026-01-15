@@ -269,3 +269,11 @@ option {
   justify-content: center;
   z-index: 9998;
 }
+
+.drag-window {
+  app-region: drag;
+}
+
+.no-drag {
+  app-region: no-drag;
+}
