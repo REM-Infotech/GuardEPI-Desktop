@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 // unplugin
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
+import { getFileBasedRouteName } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 
 import vue from "@vitejs/plugin-vue";
@@ -12,7 +13,8 @@ import { defineConfig } from "vite";
 import vueDevTools from "vite-plugin-vue-devtools";
 
 import { BootstrapVueNextResolver } from "bootstrap-vue-next/resolvers";
-import { getFileBasedRouteName } from "unplugin-vue-router";
+
+import { ViteAliases } from "vite-aliases";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,7 +22,10 @@ export default defineConfig({
     vue(),
     vueJsx(),
     vueDevTools(),
-
+    ViteAliases({
+      dir: "app",
+      prefix: "@",
+    }),
     VueRouter({
       // how and what folders to scan for files
       routesFolder: [
@@ -210,9 +215,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./app", import.meta.url)),
-      "@Components": fileURLToPath(
-        new URL("./app/components", import.meta.url)
-      ),
     },
   },
 });
