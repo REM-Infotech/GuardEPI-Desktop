@@ -32,7 +32,7 @@ export default defineConfig({
       dirs: ["app/components"],
       deep: true,
       resolvers: [BootstrapVueNextResolver(), IconsResolve({ prefix: "Icon" })],
-      dts: "app/types/components.d.ts",
+      dts: "./types/components.d.ts",
     }),
     Icons({
       compiler: "vue3",
@@ -61,7 +61,7 @@ export default defineConfig({
       exclude: [],
 
       // where to generate the types
-      dts: "app/types/routes.d.ts",
+      dts: "./types/routes.d.ts",
 
       // how to generate the route name
       getRouteName: (routeNode) => getFileBasedRouteName(routeNode),
@@ -164,7 +164,7 @@ export default defineConfig({
       // Filepath to generate corresponding .d.ts file.
       // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
       // Set `false` to disable.
-      dts: "app/types/imports.d.ts",
+      dts: "./types/imports.d.ts",
 
       // The mode for generating the .d.ts file.
       // 'overwrite': overwrite the whole existing .d.ts file with the new type definitions.

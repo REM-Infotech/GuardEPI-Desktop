@@ -8,8 +8,9 @@ import router from "./router";
 import "bootstrap-vue-next/dist/bootstrap-vue-next.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import "@/assets/css/main.css";
 import "@/assets/js/color-modes";
+
+import "@/assets/css/main.css";
 
 const app = createApp(App);
 export const pinia = createPinia();

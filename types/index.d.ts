@@ -1,3 +1,8 @@
+/// <reference types="vite/client" />
+/// <reference types="unplugin-vue-router/client" />
+/// <reference types="@electron-forge/plugin-vite/forge-vite-env" />
+/// <reference types="unplugin-icons/types/vue" />
+
 type Numberish = string | number;
 type AuthReturn = Promise<AuthResult>;
 type elementRef = Ref<Element | ComponentPublicInstance | null>;
