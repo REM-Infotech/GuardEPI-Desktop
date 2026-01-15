@@ -3,9 +3,9 @@ import MaterialSymbolsCloseRounded from "~icons/material-symbols/close-rounded?w
 import MaterialSymbolsMinimizeRounded from "~icons/material-symbols/minimize-rounded?width=24px&height=24px";
 import MaterialSymbolsOpenInFullRounded from "~icons/material-symbols/open-in-full-rounded?width=24px&height=24px";
 
-const sidebar = useSidebar();
 const route = useRoute();
-const isLoaded = computed(() => route.name && route.name !== "/");
+const isLoaded = computed(() => route.name !== "/");
+const offcanvas = useOffcanvas();
 
 const minimizeApp = async () => {
   await window.windowApi.minimizeWindow();
@@ -29,13 +29,8 @@ const closeApp = async () => {
         toggleable="lg"
         variant="primary"
       >
-        <BNavbarBrand
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasCrawJUD"
-          aria-controls="offcanvasCrawJUD"
-          class="no-drag"
-        >
-          NavBar
+        <BNavbarBrand class="no-drag" @click="offcanvas.toggle">
+          Menu
         </BNavbarBrand>
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
           <div class="d-flex gap-1">
@@ -70,6 +65,7 @@ const closeApp = async () => {
 <style lang="css" scoped>
 .heading {
   width: 100%;
+  position: fixed;
 }
 
 .navbar-anim-enter-active,

@@ -80,6 +80,7 @@ declare global {
   const useLoad: typeof import('../../app/stores/useLoad').default
   const useModel: typeof import('vue').useModel
   const useMyFetch: typeof import('@vueuse/core').useFetch
+  const useOffcanvas: typeof import('../../app/stores/useOffcanvas').default
   const useRoute: typeof import('vue-router').useRoute
   const useRouter: typeof import('vue-router').useRouter
   const useSidebar: typeof import('../../app/stores/useSidebar').default
@@ -111,7 +112,6 @@ declare module 'vue' {
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly api: UnwrapRef<typeof import('../../app/utils/api')['default']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
-    readonly bootstrapClient: UnwrapRef<typeof import('../../app/plugins/bootstrap.client')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
@@ -181,6 +181,7 @@ declare module 'vue' {
     readonly useLoad: UnwrapRef<typeof import('../../app/stores/useLoad')['default']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMyFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
+    readonly useOffcanvas: UnwrapRef<typeof import('../../app/stores/useOffcanvas')['default']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSidebar: UnwrapRef<typeof import('../../app/stores/useSidebar')['default']>

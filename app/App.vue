@@ -1,7 +1,13 @@
 <script setup lang="ts">
 useTheme().loadTheme();
 const appName = computed(() => import.meta.env.VITE_APP_NAME);
+const offcanvas = useOffcanvas();
+
 document.title = appName.value;
+
+onMounted(() => {
+  offcanvas.setup();
+});
 </script>
 
 <template>
@@ -27,16 +33,15 @@ document.title = appName.value;
   width: calc(100% - 35px);
   height: calc(100%);
   border-radius: 5px;
+  margin-top: 60px;
 }
 
 .content-app {
   position: absolute;
   width: 100dvw;
   height: 100dvh;
-
   max-width: 100%;
   max-height: 100%;
-
   overflow: hidden;
 }
 

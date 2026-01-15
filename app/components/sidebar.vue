@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import { Offcanvas } from "bootstrap";
+const router = useRouter();
+const toast = useToast();
+onMounted(() => {});
 
-const sidebar = useSidebar();
+const handleLogout = async () => {
+  router.push({ name: "/login" });
+  try {
+    await api.post("/auth/logout");
+  } catch {}
 
-onMounted(() => {
-  new Offcanvas("#offcanvasCrawJUD");
-});
+  toast.create({
+    title: "Sucesso",
+    body: "Logout efetuado!",
+    modelValue: 2500,
+  });
+};
 </script>
 
 <template>
@@ -118,9 +127,24 @@ onMounted(() => {
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><hr class="dropdown-divider" /></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li>
+            <a
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCrawJUD"
+              aria-controls="offcanvasCrawJUD"
+              @click="handleLogout"
+              class="dropdown-item"
+              href="#"
+              >Sign out</a
+            >
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </template>
+<style lang="css" scoped>
+#offcanvasCrawJUD {
+  z-index: 9999;
+}
+</style>
