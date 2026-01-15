@@ -13,8 +13,8 @@ const appName = import.meta.env.VITE_APP_NAME;
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     title: appName,
-    width: 1600,
-    height: 900,
+    width: 1280,
+    height: 720,
     minWidth: 1280,
     minHeight: 720,
     resizable: true,
