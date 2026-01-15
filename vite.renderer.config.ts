@@ -184,7 +184,7 @@ export default defineConfig({
 
       // Auto import inside Vue template
       // see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72
-      vueTemplate: false,
+      vueTemplate: true,
 
       // Auto import directives inside Vue template
       // see https://github.com/unjs/unimport/pull/374

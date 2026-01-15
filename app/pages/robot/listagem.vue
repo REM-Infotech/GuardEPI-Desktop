@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import Esaj from "@/components/img/esaj.vue";
-import Projudi from "@/components/img/projudi.vue";
+import Crawjud from "@/components/crawjud.vue";
+import Elaw from "@/components/elaw.vue";
+import Esaj from "@/components/esaj.vue";
+import Pje from "@/components/pje.vue";
+import Projudi from "@/components/projudi.vue";
 
 const { listagem } = storeToRefs(useBotStore());
 const imgSistema: Record<sistemasRobos, Component> = {
