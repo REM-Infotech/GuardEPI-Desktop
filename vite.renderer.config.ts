@@ -16,10 +16,19 @@ import { BootstrapVueNextResolver } from "bootstrap-vue-next/resolvers";
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./app", import.meta.url)),
+    },
+  },
   plugins: [
     vue(),
     vueJsx(),
     vueDevTools(),
+    Components({
+      resolvers: [BootstrapVueNextResolver()],
+      dts: "app/types/components.d.ts",
+    }),
     VueRouter({
       // how and what folders to scan for files
       routesFolder: [
@@ -72,10 +81,6 @@ export default defineConfig({
       async beforeWriteFiles(rootRoute) {
         // ...
       },
-    }),
-    Components({
-      resolvers: [BootstrapVueNextResolver()],
-      dts: "app/types/components.d.ts",
     }),
     AutoImport({
       // targets to transform
@@ -175,9 +180,7 @@ export default defineConfig({
 
       // Custom resolvers, compatible with `unplugin-vue-components`
       // see https://github.com/antfu/unplugin-auto-import/pull/23/
-      resolvers: [
-        /* ... */
-      ],
+      resolvers: [],
 
       // Include auto-imported packages in Vite's `optimizeDeps` options
       // Recommend to enable
@@ -206,9 +209,4 @@ export default defineConfig({
       dumpUnimportItems: "./json/auto-imports.json", // Default `false`
     }),
   ],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./app", import.meta.url)),
-    },
-  },
 });
