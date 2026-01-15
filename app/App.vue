@@ -1,4 +1,5 @@
 <script setup lang="ts">
+useTheme().loadTheme();
 const appName = computed(() => import.meta.env.VITE_APP_NAME);
 document.title = appName.value;
 </script>

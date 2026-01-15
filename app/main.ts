@@ -1,7 +1,8 @@
+import IpcApp from "@/ipc";
+import IpcTheme from "@/ipc/IpcTheme";
 import { BrowserWindow, app } from "electron";
 import started from "electron-squirrel-startup";
 import path from "node:path";
-import IpcApp from "./ipc";
 
 // Declaração das variáveis globais para evitar erro de valor não declarado
 
@@ -40,6 +41,7 @@ function createWindow() {
     );
   }
   IpcApp(mainWindow);
+  IpcTheme();
 }
 
 // This method will be called when Electron has finished

@@ -34,7 +34,7 @@ const closeApp = async () => {
           NavBar
         </BNavbarBrand>
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
-          <div class="d-flex gap-3">
+          <div class="d-flex gap-1">
             <BButton
               @click="minimizeApp"
               variant="outline-secondary"
