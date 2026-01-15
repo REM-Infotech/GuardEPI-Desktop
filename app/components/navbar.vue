@@ -7,6 +7,18 @@ const route = useRoute();
 const isLogged = computed(
   () => route.name && route.name !== "/" && route.name !== "/login"
 );
+
+const minimizeApp = async () => {
+  await window.windowApi.minimizeWindow();
+};
+
+const maximizeApp = async () => {
+  await window.windowApi.maximizeWindow();
+};
+
+const closeApp = async () => {
+  await window.windowApi.closeWindow();
+};
 </script>
 
 <template>
@@ -24,18 +36,21 @@ const isLogged = computed(
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
           <div class="d-flex gap-3">
             <BButton
+              @click="minimizeApp"
               variant="outline-secondary"
               class="d-flex flex-column align-items-center"
             >
               <MaterialSymbolsMinimizeRounded class="fw-bold" />
             </BButton>
             <BButton
+              @click="maximizeApp"
               variant="outline-warning"
               class="d-flex flex-column align-items-center"
             >
               <MaterialSymbolsOpenInFullRounded class="fw-bold" />
             </BButton>
             <BButton
+              @click="closeApp"
               variant="outline-danger"
               class="d-flex flex-column align-items-center"
             >

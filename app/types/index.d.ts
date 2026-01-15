@@ -17,3 +17,13 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface WindowApi {
+  closeWindow: () => Promise<void>;
+  maximizeWindow: () => Promise<void>;
+  minimizeWindow: () => Promise<void>;
+}
+
+interface Window {
+  windowApi: WindowApi;
+}
