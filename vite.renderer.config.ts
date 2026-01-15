@@ -192,7 +192,7 @@ export default defineConfig({
       eslintrc: {
         enabled: false, // Default `false`
         // provide path ending with `.mjs` or `.cjs` to generate the file with the respective format
-        filepath: "./.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
+        filepath: "./json/.eslintrc-auto-import.json", // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
 
@@ -200,11 +200,11 @@ export default defineConfig({
       // biomejs extends Docs - https://biomejs.dev/guides/how-biome-works/#the-extends-option
       biomelintrc: {
         enabled: false, // Default `false`
-        filepath: "./.biomelintrc-auto-import.json", // Default `./.biomelintrc-auto-import.json`
+        filepath: "./json/.biomelintrc-auto-import.json", // Default `./.biomelintrc-auto-import.json`
       },
 
       // Save unimport items into a JSON file for other tools to consume
-      dumpUnimportItems: "./auto-imports.json", // Default `false`
+      dumpUnimportItems: "./json/auto-imports.json", // Default `false`
     }),
   ],
   resolve: {
