@@ -5,7 +5,7 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const isLogged = computed(
-  () => route.name && route.name !== "index" && route.name !== "login"
+  () => route.name && route.name !== "/" && route.name !== "/login"
 );
 </script>
 

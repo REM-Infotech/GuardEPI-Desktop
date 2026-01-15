@@ -5,7 +5,7 @@ const router = useRouter();
 
 onMounted(async () => {
   await new Promise((resolve) => setTimeout(resolve, 1500));
-  router.push({ name: "login" });
+  router.push({ path: "/login" });
 });
 </script>
 
