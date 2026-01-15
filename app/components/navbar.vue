@@ -5,9 +5,7 @@ import MaterialSymbolsOpenInFullRounded from "~icons/material-symbols/open-in-fu
 
 const sidebar = useSidebar();
 const route = useRoute();
-const isLogged = computed(
-  () => route.name && route.name !== "/" && route.name !== "/login"
-);
+const isLoaded = computed(() => route.name && route.name !== "/");
 
 const minimizeApp = async () => {
   await window.windowApi.minimizeWindow();
@@ -26,15 +24,16 @@ const closeApp = async () => {
   <div class="heading drag-window">
     <Transition name="navbar-anim">
       <BNavbar
-        v-if="isLogged"
+        v-if="isLoaded"
         v-b-color-mode="'dark'"
         toggleable="lg"
         variant="primary"
       >
         <BNavbarBrand
-          @click="sidebar.toggle"
+          data-bs-toggle="offcanvas"
+          href="#offcanvasExample"
+          aria-controls="offcanvasExample"
           class="no-drag"
-          href="#navbar-overview"
         >
           NavBar
         </BNavbarBrand>
@@ -70,7 +69,6 @@ const closeApp = async () => {
 
 <style lang="css" scoped>
 .heading {
-  position: fixed;
   width: 100%;
 }
 

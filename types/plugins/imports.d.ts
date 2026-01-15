@@ -10,6 +10,7 @@ declare global {
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const api: typeof import('../../app/utils/api').default
   const axios: typeof import('axios').default
+  const bootstrapClient: typeof import('../../app/plugins/bootstrap.client').default
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
@@ -110,6 +111,7 @@ declare module 'vue' {
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly api: UnwrapRef<typeof import('../../app/utils/api')['default']>
     readonly axios: UnwrapRef<typeof import('axios')['default']>
+    readonly bootstrapClient: UnwrapRef<typeof import('../../app/plugins/bootstrap.client')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>

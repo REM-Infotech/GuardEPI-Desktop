@@ -25,14 +25,15 @@ onMounted(async () => {
 
 <style lang="css" scoped>
 .branding {
-  position: fixed;
-  height: 100vh;
   width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .crawjud-automatizacao {
-  margin-top: 12.5rem;
-  margin-left: 18rem;
   width: 640px;
   padding: 15px;
   border-radius: 15px;

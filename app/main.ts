@@ -16,16 +16,12 @@ function createWindow() {
     height: 720,
     minWidth: 1280,
     minHeight: 720,
-    resizable: true,
-    maximizable: true,
     frame: false,
-    transparent: false,
     fullscreenable: false,
     webPreferences: {
       nodeIntegration: false,
       devTools: !app.isPackaged,
       preload: path.join(__dirname, "preload.js"),
-      partition: `persist:${appName}`,
     },
   });
 

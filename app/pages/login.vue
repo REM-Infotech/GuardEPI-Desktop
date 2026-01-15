@@ -71,13 +71,13 @@ class authService {
 
 <style lang="css" scoped>
 .login-container {
-  margin-top: 8.5rem;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .card-login {
