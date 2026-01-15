@@ -1,10 +1,12 @@
 <script setup lang="ts">
 const router = useRouter();
 const toast = useToast();
+const offcanvas = useOffcanvas();
 onMounted(() => {});
 
 const handleLogout = async () => {
   router.push({ name: "/login" });
+  offcanvas.toggle();
   try {
     await api.post("/auth/logout");
   } catch {}
@@ -128,15 +130,7 @@ const handleLogout = async () => {
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li>
-            <a
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasCrawJUD"
-              aria-controls="offcanvasCrawJUD"
-              @click="handleLogout"
-              class="dropdown-item"
-              href="#"
-              >Sign out</a
-            >
+            <a @click="handleLogout" class="dropdown-item" href="#">Sign out</a>
           </li>
         </ul>
       </div>

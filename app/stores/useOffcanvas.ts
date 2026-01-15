@@ -9,7 +9,7 @@ export default defineStore("useOffcanvas", () => {
 
   function toggle() {
     if (state.value) {
-      if (route.name && route.name !== "/" && route.name === "/login") {
+      if (route.name && route.name !== "/" && route.name !== "/login") {
         state.value.toggle();
       }
     }
@@ -17,7 +17,7 @@ export default defineStore("useOffcanvas", () => {
 
   function show() {
     if (state.value) {
-      if (route.name && route.name !== "/" && route.name === "/login") {
+      if (route.name && route.name !== "/" && route.name !== "/login") {
         state.value.show();
       }
     }
@@ -25,7 +25,7 @@ export default defineStore("useOffcanvas", () => {
 
   function hide() {
     if (state.value) {
-      if (route.name && route.name !== "/" && route.name === "/login") {
+      if (route.name && route.name !== "/" && route.name !== "/login") {
         state.value.hide();
       }
     }
