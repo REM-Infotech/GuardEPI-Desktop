@@ -5,7 +5,8 @@ import Esaj from "@/components/esaj.vue";
 import Pje from "@/components/pje.vue";
 import Projudi from "@/components/projudi.vue";
 
-const { listagem } = storeToRefs(useBotStore());
+const botStore = useBotStore();
+const { listagem } = storeToRefs(botStore);
 const imgSistema: Record<sistemasRobos, Component> = {
   PROJUDI: Projudi,
   ESAJ: Esaj,
@@ -16,6 +17,10 @@ const imgSistema: Record<sistemasRobos, Component> = {
   TJDFT: Crawjud,
   CSI: Crawjud,
 };
+
+onMounted(async () => {
+  await botStore.load();
+});
 </script>
 
 <template>

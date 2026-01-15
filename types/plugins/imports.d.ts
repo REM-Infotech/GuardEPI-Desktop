@@ -81,6 +81,7 @@ declare global {
   const useMyFetch: typeof import('@vueuse/core').useFetch
   const useRoute: typeof import('vue-router').useRoute
   const useRouter: typeof import('vue-router').useRouter
+  const useSidebar: typeof import('../../app/stores/useSidebar').default
   const useSlots: typeof import('vue').useSlots
   const useTemplateRef: typeof import('vue').useTemplateRef
   const useTheme: typeof import('../../app/stores/useTheme').default
@@ -180,6 +181,7 @@ declare module 'vue' {
     readonly useMyFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
+    readonly useSidebar: UnwrapRef<typeof import('../../app/stores/useSidebar')['default']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useTheme: UnwrapRef<typeof import('../../app/stores/useTheme')['default']>

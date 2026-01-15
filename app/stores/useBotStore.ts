@@ -12,7 +12,7 @@ export default defineStore("useBotStore", () => {
 
   async function load() {
     try {
-      const response = await api.post<BotPayload>("/bot/listagem");
+      const response = await api.get<BotPayload>("/bot/listagem");
 
       if (response.data && response.data.listagem) {
         listagemBots.value = response.data.listagem;

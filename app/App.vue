@@ -9,6 +9,7 @@ document.title = appName.value;
     <Loading />
     <div class="content-app">
       <Navbar />
+      <Sidebar />
       <BContainer fluid class="route">
         <RouterView v-slot="{ Component }">
           <Transition name="page" mode="out-in">

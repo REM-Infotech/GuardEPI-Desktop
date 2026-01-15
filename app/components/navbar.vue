@@ -3,6 +3,7 @@ import MaterialSymbolsCloseRounded from "~icons/material-symbols/close-rounded?w
 import MaterialSymbolsMinimizeRounded from "~icons/material-symbols/minimize-rounded?width=24px&height=24px";
 import MaterialSymbolsOpenInFullRounded from "~icons/material-symbols/open-in-full-rounded?width=24px&height=24px";
 
+const sidebar = useSidebar();
 const route = useRoute();
 const isLogged = computed(
   () => route.name && route.name !== "/" && route.name !== "/login"
@@ -30,7 +31,11 @@ const closeApp = async () => {
         toggleable="lg"
         variant="primary"
       >
-        <BNavbarBrand class="no-drag" href="#navbar-overview">
+        <BNavbarBrand
+          @click="sidebar.toggle"
+          class="no-drag"
+          href="#navbar-overview"
+        >
           NavBar
         </BNavbarBrand>
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
