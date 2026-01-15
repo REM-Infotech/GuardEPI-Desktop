@@ -21,34 +21,22 @@ const isLogged = computed(
         <BNavbarBrand class="no-drag" href="#navbar-overview">
           NavBar
         </BNavbarBrand>
-        <BNavbarToggle class="no-drag" target="nav-collapse" />
-        <BCollapse class="no-drag" id="nav-collapse" is-nav>
-          <BNavbarNav class="no-drag">
-            <BNavItem href="#navbar-overview">Link</BNavItem>
-            <BNavItem href="#navbar-overview" disabled>Disabled</BNavItem>
-          </BNavbarNav>
-          <!-- Right aligned nav items -->
-          <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
-            <BNavItemDropdown text="Lang" right>
-              <BDropdownItem>EN</BDropdownItem>
-              <BDropdownItem>ES</BDropdownItem>
-              <BDropdownItem>RU</BDropdownItem>
-              <BDropdownItem>FA</BDropdownItem>
-            </BNavItemDropdown>
-            <BNavItemDropdown right>
-              <!-- Using 'button-content' slot -->
-              <template #button-content>
-                <em>User</em>
-              </template>
-              <BDropdownItem>Profile</BDropdownItem>
-              <BDropdownItem>Sign Out</BDropdownItem>
-            </BNavItemDropdown>
-          </BNavbarNav>
-          <BNavForm class="no-drag d-flex">
-            <BFormInput class="me-2" placeholder="Search" />
-            <BButton type="submit" variant="outline-success">Search</BButton>
-          </BNavForm>
-        </BCollapse>
+        <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
+          <BNavItemDropdown text="Lang" right>
+            <BDropdownItem>EN</BDropdownItem>
+            <BDropdownItem>ES</BDropdownItem>
+            <BDropdownItem>RU</BDropdownItem>
+            <BDropdownItem>FA</BDropdownItem>
+          </BNavItemDropdown>
+          <BNavItemDropdown right>
+            <!-- Using 'button-content' slot -->
+            <template #button-content>
+              <em>User</em>
+            </template>
+            <BDropdownItem>Profile</BDropdownItem>
+            <BDropdownItem>Sign Out</BDropdownItem>
+          </BNavItemDropdown>
+        </BNavbarNav>
       </BNavbar>
     </Transition>
   </div>
