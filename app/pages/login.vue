@@ -2,7 +2,6 @@
 const FormLogin = reactive({
   username: "",
   password: "",
-  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 });
 const router = useRouter();
 const toast = useToast();
@@ -11,6 +10,14 @@ const load = useLoad();
 class authService {
   static async authUser(e: SubmitEvent) {
     e.preventDefault();
+
+    try {
+      const response = await api.post<AuthPayload>("/auth/login", FormLogin);
+
+      if (response.status === 200) {
+      }
+    } catch {}
+
     router.push({ name: "/robot/listagem" });
   }
 }
