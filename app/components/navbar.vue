@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { BNavbar } from "bootstrap-vue-next";
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import MaterialSymbolsCloseRounded from "~icons/material-symbols/close-rounded?width=24px&height=24px";
+import MaterialSymbolsMinimizeRounded from "~icons/material-symbols/minimize-rounded?width=24px&height=24px";
+import MaterialSymbolsOpenInFullRounded from "~icons/material-symbols/open-in-full-rounded?width=24px&height=24px";
 
 const route = useRoute();
 const isLogged = computed(
@@ -22,20 +22,26 @@ const isLogged = computed(
           NavBar
         </BNavbarBrand>
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
-          <BNavItemDropdown text="Lang" right>
-            <BDropdownItem>EN</BDropdownItem>
-            <BDropdownItem>ES</BDropdownItem>
-            <BDropdownItem>RU</BDropdownItem>
-            <BDropdownItem>FA</BDropdownItem>
-          </BNavItemDropdown>
-          <BNavItemDropdown right>
-            <!-- Using 'button-content' slot -->
-            <template #button-content>
-              <em>User</em>
-            </template>
-            <BDropdownItem>Profile</BDropdownItem>
-            <BDropdownItem>Sign Out</BDropdownItem>
-          </BNavItemDropdown>
+          <div class="d-flex gap-3">
+            <BButton
+              variant="outline-secondary"
+              class="d-flex flex-column align-items-center"
+            >
+              <MaterialSymbolsMinimizeRounded class="fw-bold" />
+            </BButton>
+            <BButton
+              variant="outline-warning"
+              class="d-flex flex-column align-items-center"
+            >
+              <MaterialSymbolsOpenInFullRounded class="fw-bold" />
+            </BButton>
+            <BButton
+              variant="outline-danger"
+              class="d-flex flex-column align-items-center"
+            >
+              <MaterialSymbolsCloseRounded class="fw-bold" />
+            </BButton>
+          </div>
         </BNavbarNav>
       </BNavbar>
     </Transition>

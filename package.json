@@ -28,6 +28,7 @@
     "@electron-forge/plugin-fuses": "^7.11.1",
     "@electron-forge/plugin-vite": "^7.11.1",
     "@electron/fuses": "^1.8.0",
+    "@iconify-json/material-symbols": "^1.2.51",
     "@iconify-json/material-symbols-light": "^1.2.51",
     "@tsconfig/node24": "^24.0.3",
     "@types/electron-squirrel-startup": "^1.0.2",
