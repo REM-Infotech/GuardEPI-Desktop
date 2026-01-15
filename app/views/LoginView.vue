@@ -20,7 +20,14 @@ const HandleLogin = (e: Event) => {
 <template>
   <div class="card-login-page">
     <BRow align-content="center" no-gutters style="height: 100%">
-      <BCol sm="5" md="5" lg="5" xl="5" xxl="5" class="bg-white border-col1">
+      <BCol
+        sm="5"
+        md="5"
+        lg="5"
+        xl="5"
+        xxl="5"
+        class="bg-secondary border-col1"
+      >
         <form @submit="HandleLogin" class="card-login">
           <div class="card" style="width: 55%">
             <div class="card-header">login {{ sistema }}</div>

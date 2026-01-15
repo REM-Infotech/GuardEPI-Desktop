@@ -5,3 +5,5 @@ declare module "@/app/assets/pexels-maurizio.jpg" {
   const PexelsMaurizio: string;
   export default PexelsMaurizio;
 }
+
+declare module "*.js" {}
