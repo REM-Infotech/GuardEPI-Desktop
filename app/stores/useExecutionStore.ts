@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import MessageArquivo from "~/components/MessageArquivo.vue";
+import MessageArquivo from "@/components/MessageArquivo.vue";
 
 export default defineStore("useExecutionStore", () => {
   const toast = useToast();
@@ -19,10 +19,12 @@ export default defineStore("useExecutionStore", () => {
   const execucoes: ComputedRef<Execucao[]> = computed(() =>
     listagemExecucoes.value.filter((item) => {
       if (!querySistema.value) {
-        return item.id_execucao.toLowerCase().includes(queryExecucao.value.toLowerCase());
+        return item.id_execucao
+          .toLowerCase()
+          .includes(queryExecucao.value.toLowerCase());
       }
       return item.bot === querySistema.value;
-    }),
+    })
   );
 
   async function pushLog(msg: Message) {
