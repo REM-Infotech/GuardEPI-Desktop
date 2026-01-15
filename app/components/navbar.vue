@@ -10,7 +10,7 @@ const isLogged = computed(
 </script>
 
 <template>
-  <div class="heading">
+  <div class="heading drag-window">
     <Transition name="navbar-anim">
       <BNavbar
         v-if="isLogged"
@@ -18,15 +18,17 @@ const isLogged = computed(
         toggleable="lg"
         variant="primary"
       >
-        <BNavbarBrand href="#navbar-overview">NavBar</BNavbarBrand>
-        <BNavbarToggle target="nav-collapse" />
-        <BCollapse id="nav-collapse" is-nav>
-          <BNavbarNav>
+        <BNavbarBrand class="no-drag" href="#navbar-overview">
+          NavBar
+        </BNavbarBrand>
+        <BNavbarToggle class="no-drag" target="nav-collapse" />
+        <BCollapse class="no-drag" id="nav-collapse" is-nav>
+          <BNavbarNav class="no-drag">
             <BNavItem href="#navbar-overview">Link</BNavItem>
             <BNavItem href="#navbar-overview" disabled>Disabled</BNavItem>
           </BNavbarNav>
           <!-- Right aligned nav items -->
-          <BNavbarNav class="ms-auto mb-2 mb-lg-0">
+          <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
             <BNavItemDropdown text="Lang" right>
               <BDropdownItem>EN</BDropdownItem>
               <BDropdownItem>ES</BDropdownItem>
@@ -42,7 +44,7 @@ const isLogged = computed(
               <BDropdownItem>Sign Out</BDropdownItem>
             </BNavItemDropdown>
           </BNavbarNav>
-          <BNavForm class="d-flex">
+          <BNavForm class="no-drag d-flex">
             <BFormInput class="me-2" placeholder="Search" />
             <BButton type="submit" variant="outline-success">Search</BButton>
           </BNavForm>
@@ -66,5 +68,13 @@ const isLogged = computed(
 .navbar-anim-enter-from,
 .navbar-anim-leave-to {
   opacity: 0;
+}
+
+.drag-window {
+  app-region: drag;
+}
+
+.no-drag {
+  app-region: no-drag;
 }
 </style>

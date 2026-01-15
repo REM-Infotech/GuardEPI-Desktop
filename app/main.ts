@@ -19,9 +19,9 @@ const createWindow = () => {
     minHeight: 720,
     resizable: true,
     maximizable: true,
-    frame: true,
+    frame: false,
     transparent: false,
-    fullscreenable: true,
+    fullscreenable: false,
     webPreferences: {
       nodeIntegration: false,
       devTools: !app.isPackaged,
