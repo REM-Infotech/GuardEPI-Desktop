@@ -5,7 +5,6 @@ const offcanvas = useOffcanvas();
 onMounted(() => {});
 
 const handleLogout = async () => {
-  router.push({ name: "/login" });
   offcanvas.toggle();
   try {
     await api.post("/auth/logout");
@@ -16,6 +15,8 @@ const handleLogout = async () => {
     body: "Logout efetuado!",
     modelValue: 2500,
   });
+
+  router.push({ name: "/login" });
 };
 </script>
 

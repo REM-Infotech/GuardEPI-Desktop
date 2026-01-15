@@ -18,11 +18,13 @@ onMounted(() => {
       <Sidebar />
       <Navbar />
       <BContainer fluid class="route">
-        <RouterView v-slot="{ Component }">
-          <Transition name="page" mode="out-in">
-            <component :is="Component" />
-          </Transition>
-        </RouterView>
+        <div style="height: 100%; overflow: auto">
+          <RouterView v-slot="{ Component }">
+            <Transition name="page" mode="out-in">
+              <component :is="Component" />
+            </Transition>
+          </RouterView>
+        </div>
       </BContainer>
     </div>
   </BApp>
