@@ -3,14 +3,24 @@ const sidebar = useSidebar();
 </script>
 
 <template>
-  <BOffcanvas v-model="sidebar.active" id="offcanvas-1" title="Offcanvas">
-    <div class="px-3 py-2">
-      <p>
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-        consectetur ac, vestibulum at eros.
-      </p>
-      <BImg src="https://picsum.photos/500/500/?image=54" fluid thumbnail />
+  <div
+    class="offcanvas offcanvas-start show"
+    tabindex="-1"
+    id="offcanvas"
+    aria-labelledby="offcanvasLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
     </div>
-  </BOffcanvas>
+    <div class="offcanvas-body">
+      Content for the offcanvas goes here. You can place just about any
+      Bootstrap component or custom elements here.
+    </div>
+  </div>
 </template>
