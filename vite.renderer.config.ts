@@ -14,18 +14,12 @@ import vueDevTools from "vite-plugin-vue-devtools";
 
 import { BootstrapVueNextResolver } from "bootstrap-vue-next/resolvers";
 
-import { ViteAliases } from "vite-aliases";
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
     vueDevTools(),
-    ViteAliases({
-      dir: "app",
-      prefix: "@",
-    }),
     VueRouter({
       // how and what folders to scan for files
       routesFolder: [
