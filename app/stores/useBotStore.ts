@@ -1,5 +1,5 @@
 export default defineStore("useBotStore", () => {
-  const formBot = ref(false);
+  const formBotModal = ref(false);
   const selectedBot = ref<BotCrawJUD>();
   const queryBot = ref("");
   const listagemBots: Ref<BotCrawJUD[]> = ref([]);
@@ -24,7 +24,7 @@ export default defineStore("useBotStore", () => {
 
   return {
     selectedBot,
-    formBot,
+    formBotModal,
     listagemBots,
     listagem,
     queryBot,

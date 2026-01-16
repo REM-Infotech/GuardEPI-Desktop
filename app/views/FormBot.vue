@@ -3,7 +3,7 @@ import MultipleFiles from "./bot/MultipleFiles.vue";
 
 const botstore = useBotStore();
 
-const { formBot, selectedBot } = storeToRefs(botstore);
+const { formBotModal, selectedBot } = storeToRefs(botstore);
 
 const FormSetups = {
   only_auth: MultipleFiles,
@@ -21,7 +21,7 @@ const FormComponent = computed(() => {
 </script>
 
 <template>
-  <BModal size="xl" @hide="formBot = false" v-model="formBot">
+  <BModal size="xl" @hide="formBotModal = false" v-model="formBotModal">
     <template #header>
       <span class="fw-bold fs-4">
         {{ selectedBot?.display_name }}

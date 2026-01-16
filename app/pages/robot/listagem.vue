@@ -7,7 +7,7 @@ import Projudi from "@/components/projudi.vue";
 import FormBot from "@/views/FormBot.vue";
 
 const botStore = useBotStore();
-const { listagem, formBot, selectedBot } = storeToRefs(botStore);
+const { listagem, formBotModal, selectedBot } = storeToRefs(botStore);
 const imgSistema: Record<sistemasRobos, Component> = {
   PROJUDI: Projudi,
   ESAJ: Esaj,
@@ -49,7 +49,7 @@ onMounted(async () => {
             <BButton
               @click="
                 () => {
-                  formBot = !formBot;
+                  formBotModal = !formBotModal;
                   selectedBot = bot;
                 }
               "
