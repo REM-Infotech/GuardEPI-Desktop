@@ -9,32 +9,32 @@ function FileUploader() {
     private multipleFile: boolean;
     constructor() {
       this.totalSent = 0;
-      this.chunkSize = 9000 * 125;
+      this.chunkSize = 10240 * 100;
       this.fileSocket = socketio.socket("/files");
       this.multipleFile = false;
+      this.fileSocket.connect();
     }
 
     public async uploadFile(file: File): Promise<void> {
-      const { currentFileUpload, isUploadFile } = storeToRefs(useBotStore());
-      this.fileSocket.connect();
+      const { currentUpload, isUploadFile } = storeToRefs(useBotStore());
+
       this.totalSent = 0;
 
       isUploadFile.value = true;
-      currentFileUpload.value = file;
+      currentUpload.value = file;
 
       await this.uploadInChunks(file, file.size);
       await this.clearProgressBar(`Arquivo ${file.name} carregado!`);
       await new Promise((resolve) => setTimeout(resolve, 500));
-      this.fileSocket.disconnect();
     }
     public async uploadMultipleFile(FileList: File[]): Promise<void> {
-      const { currentFileUpload, isUploadFile } = storeToRefs(useBotStore());
+      const { currentUpload, isUploadFile } = storeToRefs(useBotStore());
 
       isUploadFile.value = true;
       this.multipleFile = true;
 
       for (const file of FileList) {
-        currentFileUpload.value = file;
+        currentUpload.value = file;
         await this.uploadFile(file);
       }
       this.clearProgressBar(`Seus ${FileList.length} foram carregados!`);
@@ -52,15 +52,11 @@ function FileUploader() {
         const chunk = file.slice(start, end);
         const arrayBuffer = await chunk.arrayBuffer();
         const currentSize = arrayBuffer.byteLength;
+
         this.totalSent = this.totalSent + currentSize;
 
-        await this.uploadToSocketIo(
-          file,
-          arrayBuffer,
-          currentSize,
-          seed.value,
-          totalSize
-        );
+        await this.uploadToSocketIo(file, arrayBuffer, currentSize, seed.value);
+        await this.updateProgressBar(this.totalSent, totalSize);
 
         if (end >= totalSize) {
           break;
@@ -72,57 +68,57 @@ function FileUploader() {
       file: File,
       arrayBuffer: ArrayBuffer,
       currentSize: number,
-      seed: string,
-      totalBytes: number
+      seed: string
     ) {
+      await new Promise<void>((resolve, reject) => {
+        setTimeout(() => {
+          this.fileSocket.emit(
+            "add_file",
+            {
+              name: Utils.formatString(file.name),
+              chunk: arrayBuffer,
+              current_size: currentSize,
+              fileSize: file.size,
+              fileType: file.type,
+              seed: seed,
+            },
+            (err: Error | null) => {
+              if (err) reject(err);
+              else resolve();
+            }
+          );
+        }, 250); // delay envio de cada chunk
+      });
+    }
+
+    private async updateProgressBar(totalSent: number, totalBytes: number) {
       // Ref da progressBar
-      const { progressBarValue } = storeToRefs(useBotStore());
+      const { progressPos } = storeToRefs(useBotStore());
 
       // Target Progress
-      const targetProgress = Math.round((this.totalSent / totalBytes) * 100);
+      const targetProgress = Math.round((totalSent / totalBytes) * 100);
 
       // currentProgress
-      const currentProgress = progressBarValue.value;
+      const currentProgress = progressPos.value;
 
       // step
       const step = targetProgress > currentProgress ? 1 : -1;
-      while (progressBarValue.value !== targetProgress) {
-        await new Promise(
-          (resolve, reject) =>
-            setTimeout(() => {
-              this.fileSocket.emit(
-                "add_file",
-                {
-                  name: Utils.formatString(file.name),
-                  chunk: arrayBuffer,
-                  current_size: currentSize,
-                  fileSize: file.size,
-                  fileType: file.type,
-                  seed: seed,
-                },
-                (err: Error | null) => {
-                  if (err) reject(err);
-                  else resolve(null);
-                }
-              );
-            }, 2) // delay envio de cada chunk
-        );
-
-        progressBarValue.value += step;
+      while (progressPos.value !== targetProgress) {
+        progressPos.value += step;
+        await new Promise((r) => setTimeout(r, 1));
       }
     }
 
     private async clearProgressBar(message: string) {
-      const { progressBarValue, isUploadFile } = storeToRefs(useBotStore());
+      const { progressPos, isUploadFile } = storeToRefs(useBotStore());
       toast.show({
         title: "Info",
         body: message,
         timeout: 2000,
       });
 
-      await new Promise((r) => setTimeout(r, 1500));
-      progressBarValue.value = 0.0;
-      this.fileSocket.disconnect();
+      await new Promise((r) => setTimeout(r, 250));
+      progressPos.value = 0.0;
 
       if (!this.multipleFile) {
         isUploadFile.value = false;

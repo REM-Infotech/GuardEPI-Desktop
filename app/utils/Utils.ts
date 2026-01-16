@@ -28,6 +28,12 @@ class Utils {
 
     return sanitized.split(/\s+/).filter(Boolean).join(" ");
   }
+
+  static arrayBufferToBase64(buffer: ArrayBuffer) {
+    const bytes = new Uint8Array(buffer);
+    const binary = String.fromCharCode(...bytes);
+    return window.btoa(binary);
+  }
 }
 
 export default Utils;

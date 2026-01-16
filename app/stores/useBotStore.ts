@@ -3,18 +3,18 @@ export default defineStore("useBotStore", () => {
   const formBotModal = ref(false);
   const selectedBot = ref<BotCrawJUD>();
   const seed = ref("");
-  const currentFileUpload = ref();
+  const currentUpload = ref();
   const listagemBots: Ref<BotCrawJUD[]> = ref([]);
   const isUploadFile = ref();
-
+  const fileUploader = FileUploader();
   const confirmForm = ref(false);
-  const uploadingFiles = computed(() => isUploadFile.value);
+  const isUpload = computed(() => isUploadFile.value);
   const formConfirmed = computed(() => confirmForm.value);
 
   const credenciais = ref<CredenciaisSelect[]>([
     { value: null, text: "Carregando" },
   ]);
-  const progressBarValue = ref(0);
+  const progressPos = ref(0);
   const queryLower = computed(() => queryBot.value.toLowerCase());
   const formBot = reactive<{
     Xlsx: File | null;
@@ -89,15 +89,17 @@ export default defineStore("useBotStore", () => {
       formBot.Xlsx = null;
       formBot.credencial = null;
       credenciais.value = [{ value: null, text: "Carregando" }];
+      isUploadFile.value = false;
     }
   });
 
   return {
+    fileUploader,
     confirmForm,
-    uploadingFiles,
+    isUpload,
     formConfirmed,
     isUploadFile,
-    currentFileUpload,
+    currentUpload,
     selectedBot,
     formBotModal,
     listagemBots,
@@ -109,6 +111,6 @@ export default defineStore("useBotStore", () => {
     formBot,
     seed,
     credenciais,
-    progressBarValue,
+    progressPos,
   };
 });

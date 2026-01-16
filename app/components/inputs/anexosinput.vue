@@ -1,14 +1,16 @@
 <script setup lang="ts">
 const botstore = useBotStore();
-const { formBot, currentFileUpload, progressBarValue, uploadingFiles } =
-  storeToRefs(botstore);
+
+const { formBot, currentUpload, progressPos, isUpload } = storeToRefs(botstore);
+const { fileUploader } = botstore;
+
 const arquivo = ref<File | null>(null);
 const arquivoSelecionado = computed(() => arquivo.value);
 watch(
   () => formBot.value.Anexos,
   async (newValue) => {
     if (newValue) {
-      await FileUploader().uploadMultipleFile(newValue);
+      await fileUploader.uploadMultipleFile(newValue);
     }
   }
 );
@@ -19,7 +21,7 @@ watch(
     <div style="height: 88px">
       <BFormGroup label="Outros Arquivos" class="mb-3">
         <BFormFile
-          :disabled="uploadingFiles"
+          :disabled="isUpload"
           @click="botstore.openFiles"
           v-model="formBot.Anexos"
           multiple
@@ -46,9 +48,7 @@ watch(
         <div class="ms-2 me-auto" style="height: 55px; width: 100%">
           <div class="fw-bold mb-2">{{ file.name }}</div>
           <Transition name="fade">
-            <ProgressBar
-              v-if="currentFileUpload == file && progressBarValue > 0"
-            />
+            <ProgressBar v-if="currentUpload == file && progressPos > 0" />
           </Transition>
         </div>
       </li>

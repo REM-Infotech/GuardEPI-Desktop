@@ -9,7 +9,7 @@ const {
   formBotModal,
   selectedBot,
   formBot,
-  uploadingFiles,
+  isUpload,
   formConfirmed,
   confirmForm,
 } = storeToRefs(botstore);
@@ -22,7 +22,7 @@ const FormSetups = {
 };
 
 const submitDesabilitado = computed(
-  () => !formConfirmed.value || uploadingFiles.value
+  () => !formConfirmed.value || isUpload.value
 );
 
 const FormComponent = computed(() => {

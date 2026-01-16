@@ -1,18 +1,13 @@
 <script setup lang="ts">
 const botstore = useBotStore();
-const {
-  formBot,
-  currentFileUpload,
-  progressBarValue,
-  isUploadFile,
-  uploadingFiles,
-} = storeToRefs(botstore);
+const { formBot, currentUpload, progressPos, isUpload } = storeToRefs(botstore);
+const { fileUploader } = botstore;
 
 watch(
   () => formBot.value.Xlsx,
   async (newValue) => {
     if (newValue) {
-      await FileUploader().uploadFile(newValue);
+      await fileUploader.uploadFile(newValue);
     }
   }
 );
@@ -27,7 +22,7 @@ watch(
     <div style="height: 88px">
       <BFormGroup label="Planilha de execução" class="mb-3">
         <BFormFile
-          :disabled="uploadingFiles"
+          :disabled="isUpload"
           @click="botstore.openFileXlsx"
           v-model="formBot.Xlsx"
           required
@@ -35,9 +30,7 @@ watch(
       </BFormGroup>
     </div>
     <Transition name="fade">
-      <ProgressBar
-        v-if="currentFileUpload == formBot.Xlsx && progressBarValue > 0"
-      />
+      <ProgressBar v-if="currentUpload == formBot.Xlsx && progressPos > 0" />
     </Transition>
   </div>
 </template>
