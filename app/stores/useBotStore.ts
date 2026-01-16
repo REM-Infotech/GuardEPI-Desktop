@@ -12,6 +12,27 @@ export default defineStore("useBotStore", () => {
     )
   );
 
+  const formBot = reactive<{ Xlsx: File | null; Anexos: File[] | null }>({
+    Xlsx: null,
+    Anexos: null,
+  });
+
+  const openFileXlsx = async (e: Event) => {
+    e.preventDefault();
+    const file = await fileDialog.openFileXlsx();
+    if (file) {
+      formBot.Xlsx = file;
+    }
+  };
+
+  const openFiles = async (e: Event) => {
+    e.preventDefault();
+    const files = await fileDialog.openFiles();
+    if (files) {
+      formBot.Anexos = files;
+    }
+  };
+
   async function load() {
     try {
       const response = await api.get<BotPayload>("/bot/listagem");
@@ -29,5 +50,8 @@ export default defineStore("useBotStore", () => {
     listagem,
     queryBot,
     load,
+    openFileXlsx,
+    openFiles,
+    formBot,
   };
 });
