@@ -17,6 +17,7 @@ const FormComponent = computed(() => {
   if (selectedBot.value) {
     return FormSetups[selectedBot.value.configuracao_form];
   }
+  return MultipleFiles;
 });
 </script>
 
