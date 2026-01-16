@@ -13,6 +13,7 @@ onMounted(() => {
 
 <template>
   <BApp>
+    <Toast />
     <Loading />
     <div class="content-app">
       <Sidebar />

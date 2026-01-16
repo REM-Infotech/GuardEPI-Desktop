@@ -24,7 +24,8 @@ const FormComponent = computed(() => {
   <BForm @submit="(e: Event) => e.preventDefault()">
     <BModal
       footer-class="d-flex flex-column w-100"
-      size="xl"
+      size="lg"
+      centered
       @hide="formBotModal = false"
       v-model="formBotModal"
     >

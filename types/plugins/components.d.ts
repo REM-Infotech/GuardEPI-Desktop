@@ -46,6 +46,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./../../app/components/sidebar.vue')['default']
     SimpleAuth: typeof import('./../../app/components/bot/simpleAuth.vue')['default']
+    Toast: typeof import('./../../app/components/toast.vue')['default']
     Xlsxfile: typeof import('./../../app/components/bot/xlsxfile.vue')['default']
   }
   export interface GlobalDirectives {
@@ -89,5 +90,6 @@ declare global {
   const RouterView: typeof import('vue-router')['RouterView']
   const Sidebar: typeof import('./../../app/components/sidebar.vue')['default']
   const SimpleAuth: typeof import('./../../app/components/bot/simpleAuth.vue')['default']
+  const Toast: typeof import('./../../app/components/toast.vue')['default']
   const Xlsxfile: typeof import('./../../app/components/bot/xlsxfile.vue')['default']
 }

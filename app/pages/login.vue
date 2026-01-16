@@ -4,7 +4,7 @@ const FormLogin = reactive({
   password: "",
 });
 const router = useRouter();
-const toast = useToast();
+const toast = toastStore();
 const load = useLoad();
 
 class authService {
@@ -14,7 +14,7 @@ class authService {
     let message = {
       title: "Erro",
       body: "Erro ao realizar login",
-      modelValue: 1500,
+      timeout: 1500,
     };
 
     try {
@@ -26,7 +26,7 @@ class authService {
       }
     } catch {}
 
-    toast.create(message);
+    toast.show(message);
     load.hide();
   }
 }
