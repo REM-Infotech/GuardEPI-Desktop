@@ -1,7 +1,23 @@
 <script setup lang="ts">
+import MultipleFiles from "./bot/MultipleFiles.vue";
+
 const botstore = useBotStore();
 
 const { formBot, selectedBot } = storeToRefs(botstore);
+
+const FormSetups = {
+  only_auth: MultipleFiles,
+  file_auth: MultipleFiles,
+  multiple_files: MultipleFiles,
+  only_file: MultipleFiles,
+  proc_parte: MultipleFiles,
+};
+
+const FormComponent = computed(() => {
+  if (selectedBot.value) {
+    return FormSetups[selectedBot.value.configuracao_form];
+  }
+});
 </script>
 
 <template>
@@ -13,9 +29,7 @@ const { formBot, selectedBot } = storeToRefs(botstore);
     </template>
     <template #default>
       <BForm>
-        <BInputGroup>
-          <BFormSelect />
-        </BInputGroup>
+        <component :is="FormComponent" />
       </BForm>
     </template>
   </BModal>
