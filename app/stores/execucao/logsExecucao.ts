@@ -99,6 +99,7 @@ export default defineStore(
       mountExecucao,
       encerrar_execucao,
       download_execucao,
+      execucaoRef,
     };
   },
   {

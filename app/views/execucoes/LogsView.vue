@@ -7,14 +7,14 @@ const { encerrar_execucao, download_execucao } = logsExecucao();
 const itemLog: elementRef = ref(null);
 
 const valores = computed(() => {
-  const execucoes = [...logs.value];
-  const sucessos0 = execucoes.filter(
+  const mensagens = [...logs.value];
+  const sucessos0 = mensagens.filter(
     (item) => item.message_type === "success" && item.row > 0,
   );
-  const erros0 = execucoes.filter(
+  const erros0 = mensagens.filter(
     (item) => item.message_type === "error" && item.row > 0,
   );
-  const item = (execucoes.reverse()[0] as Message) || {};
+  const item = (mensagens.reverse()[0] as Message) || {};
   const sucessos = item.sucessos || sucessos0.length;
   const erros = item.erros || erros0.length;
   const restantes = item.restantes || 0;

@@ -4,7 +4,7 @@ export default defineStore(
     const execucoesRef = ref<Execucoes>([]);
     const sistemaQueryRef = ref("");
     const idExecucaoQueryRef = ref("");
-
+    const { execucaoRef } = storeToRefs(logsExecucao());
     const idExecucaoQuery = computed(() => idExecucaoQueryRef.value);
     const sistemaQuery = computed(() => sistemaQueryRef.value);
 
@@ -23,9 +23,18 @@ export default defineStore(
       static async listarExecucoes() {
         try {
           const response = await api.get<ExecucoesPayload>("/bot/execucoes");
-          console.log(response);
           if (response.status === 200) {
-            execucoesRef.value = [...response.data.listagem];
+            const execucoes = [...response.data.listagem];
+            execucoesRef.value = execucoes;
+            if (idExecucaoQueryRef.value) {
+              const exec = execucoesRef.value.filter(
+                (item) => item.id_execucao === route.params?.id_execucao,
+              );
+
+              if (exec.length === 1) {
+                execucaoRef.value = exec[0];
+              }
+            }
           }
         } catch {}
       }

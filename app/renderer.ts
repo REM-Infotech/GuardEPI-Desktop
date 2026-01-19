@@ -13,6 +13,7 @@ import "@/assets/css/main.css";
 
 const app = createApp(App);
 export const pinia = createPinia();
+
 pinia.use(piniaPluginPersistedstate);
 
 app.use(pinia);

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { mountExecucao } = logsExecucao();
-const { idExecucaoQuery, execucoes } = execucoesStore();
+const { idExecucaoQueryRef, execucoes } = storeToRefs(execucoesStore());
 
 const { execucao } = storeToRefs(logsExecucao());
 
@@ -26,7 +26,7 @@ const hoveredExecId = computed(() => hoveredExecIdRef.value as number);
       <BFormInput
         id="inputFiltro"
         placeholder="Filtro de execução"
-        v-model="idExecucaoQuery"
+        v-model="idExecucaoQueryRef"
       />
     </BFormFloatingLabel>
     <div class="body-listagem card-body">

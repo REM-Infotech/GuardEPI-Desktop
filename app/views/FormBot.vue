@@ -17,6 +17,8 @@ const {
   seed,
 } = storeToRefs(botstore);
 
+const { idExecucaoQueryRef } = storeToRefs(execucoesStore());
+
 const FormSetups = {
   only_auth: MultipleFiles,
   file_auth: FileAuth,
@@ -78,12 +80,12 @@ async function handleSubmit(e: Event) {
     const response = await api.post<BotStartPayload>(endpoint, formData);
     message.body = response.data.message;
     message.title = response.data.title;
+
+    idExecucaoQueryRef.value = response.data.id_execucao;
+
     await sleep(500);
     router.push({
       name: "/execucoes",
-      params: {
-        id_execucao: response.data.id_execucao,
-      },
     });
   } catch {
     //
@@ -91,6 +93,7 @@ async function handleSubmit(e: Event) {
 
   load.hide();
   toast.show(message);
+  formBotModal.value = false;
 }
 </script>
 
