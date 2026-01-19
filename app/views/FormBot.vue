@@ -23,7 +23,7 @@ const FormSetups = {
 };
 
 const submitDesabilitado = computed(
-  () => !formConfirmed.value || isUpload.value
+  () => !formConfirmed.value || isUpload.value,
 );
 
 const FormComponent = computed(() => {
@@ -89,6 +89,7 @@ async function handleSubmit(e: Event) {
     <BModal
       footer-class="d-flex gap-3 flex-column w-100 align-items-start"
       size="lg"
+      body-class="overflow-y-auto"
       centered
       @hide="formBotModal = false"
       v-model="formBotModal"
@@ -99,7 +100,7 @@ async function handleSubmit(e: Event) {
         </span>
       </template>
       <template #default>
-        <div style="min-height: 480px">
+        <div style="min-height: 380px; max-height: 400px">
           <component :is="FormComponent" />
         </div>
       </template>

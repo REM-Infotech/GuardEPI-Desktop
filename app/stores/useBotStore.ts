@@ -2,7 +2,10 @@ export default defineStore("useBotStore", () => {
   const queryBot = ref("");
   const formBotModal = ref(false);
   const selectedBot = ref<BotCrawJUD>();
-  const seed = ref("");
+
+  const seedRef = ref("");
+  const seed = computed(() => seedRef.value);
+
   const currentUpload = ref();
   const listagemBots: Ref<BotCrawJUD[]> = ref([]);
   const isUploadFile = ref();
@@ -30,8 +33,8 @@ export default defineStore("useBotStore", () => {
     listagemBots.value.filter(
       (item) =>
         item.display_name.toLowerCase().includes(queryLower.value) ||
-        item.sistema.toLowerCase().includes(queryLower.value)
-    )
+        item.sistema.toLowerCase().includes(queryLower.value),
+    ),
   );
 
   const openFileXlsx = async (e: Event) => {
@@ -60,28 +63,33 @@ export default defineStore("useBotStore", () => {
     } catch {}
   }
 
-  watch(formBotModal, async (newValue) => {
-    if (newValue) {
-      seed.value = crypto.randomUUID();
+  watch(
+    formBotModal,
+    async (newValue) => {
+      if (newValue) {
+        seedRef.value = crypto.randomUUID();
+        try {
+          const response = await api.get<CredenciaisPayload>(
+            `/bot/listagem-credenciais/${selectedBot.value?.sistema}`,
+          );
 
-      try {
-        const response = await api.get<CredenciaisPayload>(
-          `/bot/listagem-credenciais/${selectedBot.value?.sistema}`
-        );
-
-        if (response.status === 200) {
-          credenciais.value = response.data.credenciais;
-        } else if (response.status === 201) {
-          formBotModal.value = false;
-          toastStore().show({
-            title: "Erro",
-            body: "É necessário ter ao menos uma credencial cadastrada!",
-            timeout: 2000,
-          });
-        }
-      } catch {}
-    }
-  });
+          if (response.status === 200) {
+            credenciais.value = response.data.credenciais;
+          } else if (response.status === 201) {
+            formBotModal.value = false;
+            toastStore().show({
+              title: "Erro",
+              body: "É necessário ter ao menos uma credencial cadastrada!",
+              timeout: 2000,
+            });
+          }
+        } catch {}
+      }
+    },
+    {
+      deep: true,
+    },
+  );
 
   watch(formBotModal, (newValue) => {
     if (!newValue) {
