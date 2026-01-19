@@ -4,7 +4,14 @@ import type { BaseColorVariant } from "bootstrap-vue-next";
 const botNs = socketio.socket("/bot");
 const execucaoStore = useExecutionStore();
 const execToRef = storeToRefs(execucaoStore);
-const { queryExecucao, execucoes, logsExecucao, execucao, itemLog, listagemExecucoes } = execToRef;
+const {
+  queryExecucao,
+  execucoes,
+  logsExecucao,
+  execucao,
+  itemLog,
+  listagemExecucoes,
+} = execToRef;
 
 const bodyListagem = ref<elementRef>(null as unknown as elementRef);
 const hoveredExecId = ref();
@@ -25,15 +32,24 @@ botNs.on("connect", () => {
 const valores = computed(() => {
   const execucoes = [...logsExecucao.value];
 
-  const sucessos0 = execucoes.filter((item) => item.message_type === "success" && item.row > 0);
-  const erros0 = execucoes.filter((item) => item.message_type === "error" && item.row > 0);
+  const sucessos0 = execucoes.filter(
+    (item) => item.message_type === "success" && item.row > 0,
+  );
+  const erros0 = execucoes.filter(
+    (item) => item.message_type === "error" && item.row > 0,
+  );
   const item = (execucoes.reverse()[0] as Message) || {};
   const sucessos = item.sucessos || sucessos0.length;
   const erros = item.erros || erros0.length;
   const restantes = item.restantes || 0;
   const total = item.total || 0;
 
-  return { sucessos: sucessos, erros: erros, total: total, restantes: restantes };
+  return {
+    sucessos: sucessos,
+    erros: erros,
+    total: total,
+    restantes: restantes,
+  };
 });
 
 watch(itemLog, async (newValue) => {
@@ -45,7 +61,11 @@ watch(itemLog, async (newValue) => {
   const scrollContainer = el.closest(".body-listagem");
   if (scrollContainer) {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest",
+    });
   }
 });
 
@@ -85,7 +105,9 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
         <div class="card card-exec">
           <div class="card-header header-exec">
             {{
-              execucao.id_execucao ? `Execução selecionada:  ${execucao.id_execucao}` : "Execuções"
+              execucao.id_execucao
+                ? `Execução selecionada:  ${execucao.id_execucao}`
+                : "Execuções"
             }}
           </div>
           <BFormFloatingLabel
@@ -94,7 +116,11 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
             label="Filtre aqui"
             for="inputFiltro"
           >
-            <BFormInput id="inputFiltro" placeholder="Filtro de execução" v-model="queryExecucao" />
+            <BFormInput
+              id="inputFiltro"
+              placeholder="Filtro de execução"
+              v-model="queryExecucao"
+            />
           </BFormFloatingLabel>
           <div class="body-listagem card-body">
             <TransitionGroup
@@ -134,7 +160,9 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
           >
             <span class="fw-bold fs-5">
               {{
-                execucao.id_execucao ? `Execução ${execucao.id_execucao}` : "Selecione uma Execução"
+                execucao.id_execucao
+                  ? `Execução ${execucao.id_execucao}`
+                  : "Selecione uma Execução"
               }}
             </span>
 

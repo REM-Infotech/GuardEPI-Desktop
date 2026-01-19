@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const FormLogin = reactive({
-  username: "",
-  password: "",
-});
 const router = useRouter();
 const toast = toastStore();
 const load = useLoad();
+const { userInfoRef } = storeToRefs(userStore());
+const { FormLogin } = loginStore();
 
 class authService {
   static async authUser(e: SubmitEvent) {
@@ -22,6 +20,9 @@ class authService {
       if (response.status === 200) {
         message.title = "Sucesso";
         message.body = response.data.message;
+
+        userInfoRef.value = response.data.user;
+
         router.push({ name: "/robot/listagem" });
       }
     } catch {}

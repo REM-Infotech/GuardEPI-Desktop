@@ -30,7 +30,10 @@ const closeApp = async () => {
         variant="primary"
       >
         <BNavbarBrand class="no-drag" @click="offcanvas.toggle">
-          Menu
+          <div class="d-flex gap-2 align-items-center">
+            <CrawJUD :width="35" :height="35" />
+            <span class="fw-bold"> Menu </span>
+          </div>
         </BNavbarBrand>
         <BNavbarNav class="no-drag ms-auto mb-2 mb-lg-0">
           <div class="d-flex gap-1">

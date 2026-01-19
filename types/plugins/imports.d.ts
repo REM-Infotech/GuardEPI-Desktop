@@ -33,6 +33,7 @@ declare global {
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
+  const loginStore: typeof import('../../app/stores/loginStore').default
   const mapActions: typeof import('pinia').mapActions
   const mapGetters: typeof import('pinia').mapGetters
   const mapState: typeof import('pinia').mapState
@@ -93,6 +94,7 @@ declare global {
   const useTemplateRef: typeof import('vue').useTemplateRef
   const useTheme: typeof import('../../app/stores/useTheme').default
   const useToast: typeof import('../../app/plugins/useToast').default
+  const userStore: typeof import('../../app/stores/userStore').default
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect
@@ -139,6 +141,7 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly loginStore: UnwrapRef<typeof import('../../app/stores/loginStore')['default']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
     readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
@@ -194,11 +197,11 @@ declare module 'vue' {
     readonly useOffcanvas: UnwrapRef<typeof import('../../app/stores/useOffcanvas')['default']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
-    readonly useSidebar: UnwrapRef<typeof import('../../app/stores/useSidebar')['default']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
     readonly useTheme: UnwrapRef<typeof import('../../app/stores/useTheme')['default']>
     readonly useToast: UnwrapRef<typeof import('../../app/plugins/useToast')['default']>
+    readonly userStore: UnwrapRef<typeof import('../../app/stores/userStore')['default']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

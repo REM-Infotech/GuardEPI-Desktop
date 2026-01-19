@@ -2,7 +2,7 @@
 import MessageArquivo from "@/components/MessageArquivo.vue";
 
 export default defineStore("useExecutionStore", () => {
-  const toast = useToast();
+  const toast = toastStore();
   const Arquivo = ref({
     nome: "",
     path: "",
@@ -24,7 +24,7 @@ export default defineStore("useExecutionStore", () => {
           .includes(queryExecucao.value.toLowerCase());
       }
       return item.bot === querySistema.value;
-    })
+    }),
   );
 
   async function pushLog(msg: Message) {
@@ -53,17 +53,19 @@ export default defineStore("useExecutionStore", () => {
             path: result,
           };
           const render = h(MessageArquivo, { filePath: result as string });
-          toast.create({
+          toast.show({
             title: "Info",
-            slots: {
-              default: () => render,
-            },
-            modelValue: 2500,
+            body: "ok",
+            timeout: 1500,
           });
         }
       }
     } catch {
-      toast.create({ title: "Erro", body: "Não foi possivel baixar execução" });
+      toast.show({
+        title: "Erro",
+        body: "Não foi possivel baixar execução",
+        timeout: 1500,
+      });
     }
 
     hide();

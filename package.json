@@ -32,6 +32,7 @@
     "@electron/fuses": "^1.8.0",
     "@iconify-json/material-symbols": "^1.2.52",
     "@iconify-json/material-symbols-light": "^1.2.52",
+    "@iconify-json/ri": "^1.2.7",
     "@tsconfig/node24": "^24.0.4",
     "@types/bootstrap": "^5.2.10",
     "@types/electron-squirrel-startup": "^1.0.2",
@@ -78,6 +79,7 @@
     "bootstrap-vue-next": "^0.42.0",
     "electron-squirrel-startup": "^1.0.1",
     "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "socket.io-client": "^4.8.3",
     "vue": "^3.5.27",
     "vue-router": "^4.6.4"

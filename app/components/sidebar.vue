@@ -1,7 +1,16 @@
 <script setup lang="ts">
+import CrawJUD2 from "@/assets/img/crawjud2.ico";
+
+import RiCalendarScheduleLine from "~icons/ri/calendar-schedule-line?width=24px&height=24px";
+import RiRobot3Line from "~icons/ri/robot-3-line?width=24px&height=24px";
+import RiUser3Line from "~icons/ri/user-3-line?width=32px&height=32px";
+
 const router = useRouter();
 const toast = useToast();
 const offcanvas = useOffcanvas();
+
+const { userInfo } = storeToRefs(userStore());
+
 onMounted(() => {});
 
 const handleLogout = async () => {
@@ -32,80 +41,49 @@ const handleLogout = async () => {
       style="width: 280px; height: 100%"
     >
       <a
-        href="/"
+        href="#"
+        @click="
+          (e: Event) => {
+            e.preventDefault();
+            offcanvas.hide();
+          }
+        "
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
       >
-        <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
-          <use xlink:href="#bootstrap"></use>
-        </svg>
-        <span class="fs-4">Sidebar</span>
+        <img :src="CrawJUD2" class="me-2" alt="" style="width: 40px" />
+        <span class="fs-2">CrawJUD</span>
       </a>
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
-            <svg
-              class="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlink:href="#home"></use>
-            </svg>
-            Home
-          </a>
+          <RouterLink
+            class="nav-link text-white text-decoration-none"
+            :to="{ name: '/robot/listagem' }"
+            aria-current="page"
+            active-class="active"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <span class="pe-none">
+                <RiRobot3Line />
+              </span>
+              <span>Robôs</span>
+            </div>
+          </RouterLink>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg
-              class="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlink:href="#speedometer2"></use>
-            </svg>
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg
-              class="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlink:href="#table"></use>
-            </svg>
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg
-              class="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlink:href="#grid"></use>
-            </svg>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg
-              class="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlink:href="#people-circle"></use>
-            </svg>
-            Customers
-          </a>
+        <li class="nav-item">
+          <RouterLink
+            class="nav-link text-white text-decoration-none"
+            :to="{ name: '/execucoes' }"
+            aria-current="page"
+            active-class="active"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <span class="pe-none">
+                <RiCalendarScheduleLine />
+              </span>
+              <span>Execuções</span>
+            </div>
+          </RouterLink>
         </li>
       </ul>
       <hr />
@@ -116,14 +94,10 @@ const handleLogout = async () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <img
-            src="https://github.com/mdo.png"
-            alt=""
-            width="32"
-            height="32"
-            class="rounded-circle me-2"
-          />
-          <strong>mdo</strong>
+          <span class="rounded-circle me-2">
+            <RiUser3Line />
+          </span>
+          <strong>{{ userInfo?.name }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
           <li><a class="dropdown-item" href="#">New project...</a></li>
