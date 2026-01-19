@@ -4,7 +4,7 @@ import MultipleFiles from "./bot/MultipleFiles.vue";
 
 const botstore = useBotStore();
 const load = useLoad();
-
+const toast = useToast();
 const {
   formBotModal,
   selectedBot,
@@ -38,6 +38,12 @@ type FormbotData = Record<string, string | string[]>;
 async function handleSubmit(e: Event) {
   e.preventDefault();
 
+  const message = {
+    title: "Erro",
+    body: "Erro ao iniciar robô",
+    timeout: 1500,
+  };
+
   load.show();
 
   const list_items = Object.entries(formBot.value)
@@ -63,14 +69,18 @@ async function handleSubmit(e: Event) {
   formData["configuracao_form"] = String(selectedBot.value?.configuracao_form);
   formData["bot_id"] = String(selectedBot.value?.Id);
   formData["seeduploadedfiles"] = seed.value;
-  formData["seed_filesocket"] = seed.value;
+  formData["sid_filesocket"] = seed.value;
   try {
-    await api.post(`/bot/${selectedBot.value?.sistema}/run`, formData);
-  } catch (err) {
-    console.log(err);
+    const endpoint = `/bot/${selectedBot.value?.sistema}/run`;
+    const response = await api.post<BotStartPayload>(endpoint, formData);
+    message.body = response.data.message;
+    message.title = response.data.title;
+  } catch {
+    //
   }
 
   load.hide();
+  toast.show(message);
 }
 </script>
 

@@ -70,3 +70,11 @@ interface Message {
 interface ValoresContador extends Record<Contadores, number> {
   [key in T]: number;
 }
+
+interface BotStartPayload {
+  title: "Sucesso";
+  message: "Robô inicializado com sucesso!";
+  status: "success";
+  id_execucao: string;
+  pid_resumido: string;
+}

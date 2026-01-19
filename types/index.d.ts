@@ -26,4 +26,8 @@ interface Window {
   themeApi: ThemeApi;
   windowApi: WindowApi;
   matchMedia: typeof window.matchMedia;
+  fileService: fileService;
+  electron: {
+    showFile: (filePath: string) => Promise<void>;
+  };
 }

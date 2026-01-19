@@ -79,6 +79,7 @@ declare global {
   const useBotStore: typeof import('../../app/stores/useBotStore').default
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
+  const useExecutionStore: typeof import('../../app/stores/useExecutionStore').default
   const useId: typeof import('vue').useId
   const useLink: typeof import('vue-router').useLink
   const useLoad: typeof import('../../app/stores/useLoad').default
@@ -184,6 +185,7 @@ declare module 'vue' {
     readonly useBotStore: UnwrapRef<typeof import('../../app/stores/useBotStore')['default']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useExecutionStore: UnwrapRef<typeof import('../../app/stores/useExecutionStore')['default']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoad: UnwrapRef<typeof import('../../app/stores/useLoad')['default']>

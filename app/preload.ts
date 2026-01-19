@@ -26,11 +26,20 @@ const themeApi = {
     ipcRenderer.invoke("dark-mode:current-preset"),
 };
 
+const fileService = {
+  downloadExecucao: (kw: DownloadExec): Promise<void> =>
+    ipcRenderer.invoke("download-exec", kw),
+
+  toFileUrl: (pathFile: string): Promise<string> =>
+    ipcRenderer.invoke("file-service:to-file-url", pathFile),
+};
+
 try {
   const exposes = {
     windowApi: windowApi,
     themeApi: themeApi,
     fileDialogApi: FileDialogApi,
+    fileService: fileService,
   };
   Object.entries(exposes).forEach(([k, v]) =>
     contextBridge.exposeInMainWorld(k, v)
@@ -42,4 +51,9 @@ window.addEventListener("keypress", (e) => {
     if (e.key === "F11") e.preventDefault();
     if (e.key === "F5") e.preventDefault();
   }
+});
+
+contextBridge.exposeInMainWorld("electron", {
+  showFile: (filePath: string) =>
+    ipcRenderer.invoke("show-file-execution", filePath),
 });

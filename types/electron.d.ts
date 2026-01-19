@@ -18,3 +18,7 @@ interface fileDialogApi {
   openFileXlsx: () => Promise<FileObject | undefined>;
   openFiles: () => Promise<FileObject[] | undefined>;
 }
+interface fileService {
+  downloadExecucao: (kw: PayloadDownloadExecucao) => Promise<string | void>;
+  toFileUrl: (pathFile: string) => Promise<string>;
+}
