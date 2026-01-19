@@ -25,46 +25,44 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <BContainer>
-      <FormBot />
-      <TransitionGroup tag="div" name="bots" class="row row-bots">
-        <div
-          class="col-lg-3 col-xl-3 col-md-3 col-sm-3 p-2"
-          v-for="(bot, index) in listagem"
-          :key="index"
-        >
-          <div class="card">
-            <div class="card-header">
-              <span class="text-white fw-bold titulo-robo">
-                {{ bot.display_name }}
-              </span>
-            </div>
-            <component :is="imgSistema[bot.sistema]" />
-            <div class="card-body">
-              <span class="text-white text-desc">
-                {{ bot.descricao }}
-              </span>
-            </div>
-            <div class="card-footer d-flex gap-3">
-              <BButton
-                @click="
-                  () => {
-                    formBotModal = !formBotModal;
-                    selectedBot = bot;
-                  }
-                "
-                class="button-execute"
-              >
-                Executar
-              </BButton>
-              <BButton class="button-bot" disabled> Ver Logs </BButton>
-            </div>
+  <BContainer class="mt-5">
+    <FormBot />
+    <TransitionGroup tag="div" name="bots" class="row row-bots">
+      <div
+        class="col-lg-3 col-xl-3 col-md-3 col-sm-3 p-2"
+        v-for="(bot, index) in listagem"
+        :key="index"
+      >
+        <div class="card">
+          <div class="card-header">
+            <span class="text-white fw-bold titulo-robo">
+              {{ bot.display_name }}
+            </span>
+          </div>
+          <component :is="imgSistema[bot.sistema]" />
+          <div class="card-body">
+            <span class="text-white text-desc">
+              {{ bot.descricao }}
+            </span>
+          </div>
+          <div class="card-footer d-flex gap-3">
+            <BButton
+              @click="
+                () => {
+                  formBotModal = !formBotModal;
+                  selectedBot = bot;
+                }
+              "
+              class="button-execute"
+            >
+              Executar
+            </BButton>
+            <BButton class="button-bot" disabled> Ver Logs </BButton>
           </div>
         </div>
-      </TransitionGroup>
-    </BContainer>
-  </div>
+      </div>
+    </TransitionGroup>
+  </BContainer>
 </template>
 
 <style lang="css" scoped>

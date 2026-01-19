@@ -5,6 +5,7 @@ import MultipleFiles from "./bot/MultipleFiles.vue";
 const botstore = useBotStore();
 const load = useLoad();
 const toast = useToast();
+
 const {
   formBotModal,
   selectedBot,
@@ -75,6 +76,13 @@ async function handleSubmit(e: Event) {
     const response = await api.post<BotStartPayload>(endpoint, formData);
     message.body = response.data.message;
     message.title = response.data.title;
+
+    router.push({
+      name: "/execucoes",
+      params: {
+        id_execucao: response.data.id_execucao,
+      },
+    });
   } catch {
     //
   }
