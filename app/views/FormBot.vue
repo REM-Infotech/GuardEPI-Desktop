@@ -5,6 +5,7 @@ import MultipleFiles from "./bot/MultipleFiles.vue";
 const botstore = useBotStore();
 const load = useLoad();
 const toast = useToast();
+const router = useRouter();
 
 const {
   formBotModal,
@@ -15,6 +16,7 @@ const {
   confirmForm,
   seed,
 } = storeToRefs(botstore);
+
 const FormSetups = {
   only_auth: MultipleFiles,
   file_auth: FileAuth,
@@ -76,7 +78,7 @@ async function handleSubmit(e: Event) {
     const response = await api.post<BotStartPayload>(endpoint, formData);
     message.body = response.data.message;
     message.title = response.data.title;
-
+    await sleep(500);
     router.push({
       name: "/execucoes",
       params: {

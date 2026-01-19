@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import ExecucoesView from "@/views/execucoes/ExecucoesView.vue";
 import LogsView from "@/views/execucoes/LogsView.vue";
+const { listar_execucoes } = execucoesStore();
+
+onMounted(async () => {
+  await listar_execucoes();
+});
 </script>
 
 <template>

@@ -5,7 +5,7 @@
 
 type Numberish = string | number;
 type AuthReturn = Promise<AuthResult>;
-type elementRef = Ref<Element | ComponentPublicInstance | null>;
+type elementRef = Ref<Element | ComponentPublicInstance | HTMLElement | null>;
 type PromiseVoid = Promise<unknown>;
 interface cookieApp {
   url: string;

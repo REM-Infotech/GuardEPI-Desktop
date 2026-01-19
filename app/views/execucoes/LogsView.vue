@@ -1,25 +1,13 @@
 <script setup lang="ts">
 import type { BaseColorVariant } from "bootstrap-vue-next";
 
-const botNs = socketio.socket("/bot");
-const execucaoStore = useExecutionStore();
-const execToRef = storeToRefs(execucaoStore);
-const { logsExecucao, execucao, itemLog, listagemExecucoes } = execToRef;
+const { logs, execucao } = storeToRefs(logsExecucao());
+const { encerrar_execucao, download_execucao } = logsExecucao();
 
-botNs.emit("listagem_execucoes", (data: Execucoes) => {
-  if (!data) return;
-  listagemExecucoes.value = data;
-});
-
-botNs.on("connect", () => {
-  botNs.emit("listagem_execucoes", (data: Execucoes) => {
-    if (!data) return;
-    listagemExecucoes.value = data;
-  });
-});
+const itemLog: elementRef = ref(null);
 
 const valores = computed(() => {
-  const execucoes = [...logsExecucao.value];
+  const execucoes = [...logs.value];
   const sucessos0 = execucoes.filter(
     (item) => item.message_type === "success" && item.row > 0,
   );
@@ -42,10 +30,12 @@ const valores = computed(() => {
 
 watch(
   itemLog,
-  async (newValue) => {
-    if (!newValue) return;
+  async (newVal) => {
+    if (!newVal) return;
+
+    const el = newVal as HTMLElement;
+
     await nextTick();
-    const el = newValue as HTMLElement;
     const scrollContainer = el.closest(".body-logs-execucao");
     if (scrollContainer) {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -85,7 +75,7 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
     >
       <span class="fw-bold fs-5">
         {{
-          execucao.id_execucao
+          execucao
             ? `Execução ${execucao.id_execucao}`
             : "Selecione uma Execução"
         }}
@@ -93,10 +83,10 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
 
       <div style="min-height: 35px" class="d-flex gap-1">
         <BButton
-          v-if="execucao.id_execucao"
+          v-if="execucao"
           size="md"
           variant="primary"
-          @click="execucaoStore.download_execucao(execucao.id_execucao)"
+          @click="download_execucao(execucao.id_execucao)"
         >
           <span class="fw-bold"> Baixar Arquivos </span>
         </BButton>
@@ -104,7 +94,7 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
           size="md"
           variant="danger"
           v-if="execucao && execucao.status === 'Em Execução'"
-          @click="execucaoStore.encerrar_execucao(execucao.id_execucao)"
+          @click="encerrar_execucao(execucao.id_execucao)"
         >
           <span class="fw-bold"> Encerrar Execução </span>
         </BButton>
@@ -124,7 +114,7 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
             'align-items-start',
             classLogs[log.message_type],
           ]"
-          v-for="(log, idx) in logsExecucao"
+          v-for="(log, idx) in logs"
           :key="idx"
           class="list-group-item"
         >
@@ -151,7 +141,7 @@ const VariantLogs: Record<MessageType, keyof BaseColorVariant> = {
     </div>
     <div class="card-footer footerLogsExecucao d-flex justify-content-between">
       <span class="fw-bold">
-        {{ execucao.status ? `Status ${execucao.status}` : "" }}
+        {{ execucao ? `Status ${execucao.status}` : "" }}
       </span>
 
       <div>

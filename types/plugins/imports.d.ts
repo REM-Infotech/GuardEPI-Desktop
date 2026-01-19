@@ -12,7 +12,6 @@ declare global {
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const api: typeof import('../../app/utils/api').default
   const axios: typeof import('axios').default
-  const bootstrapClient: typeof import('../../app/plugins/bootstrap.client').default
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
@@ -21,6 +20,7 @@ declare global {
   const defineComponent: typeof import('vue').defineComponent
   const defineStore: typeof import('pinia').defineStore
   const effectScope: typeof import('vue').effectScope
+  const execucoesStore: typeof import('../../app/stores/execucao/execucoesStore').default
   const fileDialog: typeof import('../../app/utils/fileDialog').default
   const getActivePinia: typeof import('pinia').getActivePinia
   const getCurrentInstance: typeof import('vue').getCurrentInstance
@@ -33,7 +33,9 @@ declare global {
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
+  const loggerStore: typeof import('../../app/stores/bot/loggerStore').default
   const loginStore: typeof import('../../app/stores/loginStore').default
+  const logsExecucao: typeof import('../../app/stores/execucao/logsExecucao').default
   const mapActions: typeof import('pinia').mapActions
   const mapGetters: typeof import('pinia').mapGetters
   const mapState: typeof import('pinia').mapState
@@ -57,7 +59,6 @@ declare global {
   const onUnmounted: typeof import('vue').onUnmounted
   const onUpdated: typeof import('vue').onUpdated
   const onWatcherCleanup: typeof import('vue').onWatcherCleanup
-  const piniaSafeStorage: typeof import('../../app/utils/piniaSafeStorage').default
   const provide: typeof import('vue').provide
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
@@ -70,6 +71,7 @@ declare global {
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const sleep: typeof import('../../app/utils/sleep').default
   const socketio: typeof import('../../app/utils/socketio').default
   const storeToRefs: typeof import('pinia').storeToRefs
   const toRaw: typeof import('vue').toRaw
@@ -132,6 +134,7 @@ declare module 'vue' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly execucoesStore: UnwrapRef<typeof import('../../app/stores/execucao/execucoesStore')['default']>
     readonly fileDialog: UnwrapRef<typeof import('../../app/utils/fileDialog')['default']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -144,7 +147,9 @@ declare module 'vue' {
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
+    readonly loggerStore: UnwrapRef<typeof import('../../app/stores/bot/loggerStore')['default']>
     readonly loginStore: UnwrapRef<typeof import('../../app/stores/loginStore')['default']>
+    readonly logsExecucao: UnwrapRef<typeof import('../../app/stores/execucao/logsExecucao')['default']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
     readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
@@ -173,13 +178,12 @@ declare module 'vue' {
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
     readonly ref: UnwrapRef<typeof import('vue')['ref']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
-    readonly route: UnwrapRef<typeof import('../../app/utils/route')['default']>
-    readonly router: UnwrapRef<typeof import('../../app/utils/router')['default']>
     readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
     readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly sleep: UnwrapRef<typeof import('../../app/utils/sleep')['default']>
     readonly socketio: UnwrapRef<typeof import('../../app/utils/socketio')['default']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
@@ -193,7 +197,6 @@ declare module 'vue' {
     readonly useBotStore: UnwrapRef<typeof import('../../app/stores/useBotStore')['default']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
-    readonly useExecutionStore: UnwrapRef<typeof import('../../app/stores/useExecutionStore')['default']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoad: UnwrapRef<typeof import('../../app/stores/useLoad')['default']>

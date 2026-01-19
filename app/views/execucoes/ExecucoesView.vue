@@ -1,43 +1,18 @@
 <script setup lang="ts">
-const botNs = socketio.socket("/bot");
-const execucaoStore = useExecutionStore();
-const execToRef = storeToRefs(execucaoStore);
-const { queryExecucao, execucoes, execucao, listagemExecucoes } = execToRef;
+const { mountExecucao } = logsExecucao();
+const { idExecucaoQuery, execucoes } = execucoesStore();
 
-const bodyListagem = ref<elementRef>(null as unknown as elementRef);
-const hoveredExecId = ref();
-const SetExec = ref(false);
+const { execucao } = storeToRefs(logsExecucao());
 
-botNs.emit("listagem_execucoes", (data: Execucoes) => {
-  if (!data) return;
-  listagemExecucoes.value = data;
-});
-
-botNs.on("connect", () => {
-  botNs.emit("listagem_execucoes", (data: Execucoes) => {
-    if (!data) return;
-    listagemExecucoes.value = data;
-  });
-});
-
-async function performSelecaoExec(e: Event, exec: Execucao) {
-  e.preventDefault();
-  botNs.disconnect();
-  if (SetExec.value) return;
-  if (execucao.value === exec) return;
-  SetExec.value = true;
-  execucao.value = exec;
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  SetExec.value = false;
-  botNs.connect();
-}
+const hoveredExecIdRef = ref();
+const hoveredExecId = computed(() => hoveredExecIdRef.value as number);
 </script>
 
 <template>
   <div class="card cardListagemExecucao">
     <div class="card-header headerListagemExecucao">
       {{
-        execucao.id_execucao
+        execucao
           ? `Execução selecionada:  ${execucao.id_execucao}`
           : "Execuções"
       }}
@@ -51,29 +26,25 @@ async function performSelecaoExec(e: Event, exec: Execucao) {
       <BFormInput
         id="inputFiltro"
         placeholder="Filtro de execução"
-        v-model="queryExecucao"
+        v-model="idExecucaoQuery"
       />
     </BFormFloatingLabel>
     <div class="body-listagem card-body">
-      <TransitionGroup
-        name="list"
-        class="list-group"
-        tag="div"
-        :ref="
-          (el) => {
-            bodyListagem = el;
-          }
-        "
-      >
+      <TransitionGroup name="list" class="list-group" tag="div">
         <BListGroupItem
           class="d-flex justify-content-between align-items-start"
+          active-class="active"
           v-for="exec in execucoes"
           :key="exec.Id"
           :active="hoveredExecId === exec.Id"
-          @mouseenter="hoveredExecId = exec.Id"
-          @mouseleave="hoveredExecId = null"
-          @click="async (e: Event) => performSelecaoExec(e, exec)"
-          active-class="active"
+          @mouseenter="hoveredExecIdRef = exec.Id"
+          @mouseleave="hoveredExecIdRef = ''"
+          @click="
+            async (e: Event) => {
+              e.preventDefault();
+              mountExecucao(exec);
+            }
+          "
         >
           <div class="ms-2 me-auto">
             <div class="fw-bold">{{ exec.id_execucao }}</div>
