@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
+  - '@bitdisaster/exe-icon-extractor'
   - cypress
   - electron
   - electron-winstaller
