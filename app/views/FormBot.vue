@@ -12,6 +12,7 @@ const {
   isUpload,
   formConfirmed,
   confirmForm,
+  seed,
 } = storeToRefs(botstore);
 const FormSetups = {
   only_auth: MultipleFiles,
@@ -61,7 +62,7 @@ async function handleSubmit(e: Event) {
 
   formData["configuracao_form"] = String(selectedBot.value?.configuracao_form);
   formData["bot_id"] = String(selectedBot.value?.Id);
-
+  formData["seeduploadedfiles"] = seed.value;
   try {
     await api.post(`/bot/${selectedBot.value?.sistema}/run`, formData);
   } catch (err) {
