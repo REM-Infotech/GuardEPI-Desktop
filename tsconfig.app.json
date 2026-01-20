@@ -1,12 +1,11 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts",
     "app/**/*",
     "app/**/*.vue",
-    "types/**/*",
-    "typing/**/*",
-    "typings/**/*"
+    "./types/*.d.ts",
+    "./types/responses/*.d.ts",
+    "./types/plugins/*.d.ts"
   ],
   "exclude": ["app/**/__tests__/*"],
   "compilerOptions": {

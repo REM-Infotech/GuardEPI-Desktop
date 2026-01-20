@@ -1,15 +1,7 @@
 <script setup lang="ts">
-import Branding from "@/assets/img/Branding.png";
-
 const mouted = ref(false);
 const router = useRouter();
 onMounted(async () => {
-  await new Promise((resolve) =>
-    setTimeout(() => {
-      mouted.value = true;
-      resolve(undefined);
-    }, 500),
-  );
   await new Promise((resolve) => setTimeout(resolve, 2000));
   router.push({ name: "/login" });
 });
@@ -18,7 +10,9 @@ onMounted(async () => {
 <template>
   <div class="branding">
     <Transition name="brand">
-      <img v-if="mouted" :src="Branding" alt="" class="crawjud-automatizacao" />
+      <div v-if="mouted">
+        <CrawJUDBrand />
+      </div>
     </Transition>
   </div>
 </template>

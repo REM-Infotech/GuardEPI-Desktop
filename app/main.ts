@@ -25,7 +25,7 @@ function createWindow() {
       nodeIntegration: false,
       sandbox: true,
       contextIsolation: true,
-      devTools: !app.isPackaged,
+      devTools: true,
       preload: path.join(__dirname, "preload.js"),
     },
   });
@@ -35,7 +35,8 @@ function createWindow() {
     mainWindow.webContents.openDevTools({ mode: "detach" });
   } else {
     mainWindow.loadFile(
-      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
+      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
+      { hash: "/" },
     );
   }
   IpcTheme();
@@ -61,7 +62,7 @@ function createWindow() {
           ],
         },
       });
-    }
+    },
   );
 }
 

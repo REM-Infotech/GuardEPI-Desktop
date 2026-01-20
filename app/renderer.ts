@@ -4,12 +4,20 @@ import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+
+import { createRouter, createWebHashHistory } from "vue-router";
+import { routes } from "vue-router/auto-routes";
+
 // Add the necessary CSS
 import "bootstrap-vue-next/dist/bootstrap-vue-next.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 import "@/assets/css/main.css";
+
+export const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
 
 const app = createApp(App);
 export const pinia = createPinia();

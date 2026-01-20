@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 // unplugin
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { getFileBasedRouteName } from "unplugin-vue-router";
+import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 
 import vue from "@vitejs/plugin-vue";
@@ -19,7 +19,12 @@ import IconsResolve from "unplugin-icons/resolver";
 import Icons from "unplugin-icons/vite";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  ssr: {
+    noExternal: mode === "development" ? ["vue-router"] : [],
+  },
+  base: "./",
+  root: process.cwd(),
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./app", import.meta.url)),
@@ -44,31 +49,10 @@ export default defineConfig({
     }),
     VueRouter({
       // how and what folders to scan for files
-      routesFolder: [
-        {
-          src: "app/pages",
-          path: "",
-          // override globals
-          exclude: (excluded) => excluded,
-          filePatterns: (filePatterns) => filePatterns,
-          extensions: (extensions) => extensions,
-        },
-      ],
-
-      // what files should be considered as a pages
-      extensions: [".vue"],
-
-      // what files to include
-      filePatterns: ["**/*"],
-
-      // files to exclude from the scan
-      exclude: [],
+      routesFolder: ["app/pages"],
 
       // where to generate the types
       dts: "./types/plugins/routes.d.ts",
-
-      // how to generate the route name
-      getRouteName: (routeNode) => getFileBasedRouteName(routeNode),
 
       // default language for <route> custom blocks
       routeBlockLang: "json5",
@@ -84,16 +68,6 @@ export default defineConfig({
         // should `users.[id]` be parsed as `users/:id`?
         dotNesting: true,
       },
-
-      // modify routes individually
-      async extendRoute(route) {
-        // ...
-      },
-
-      // modify routes before writing
-      async beforeWriteFiles(rootRoute) {
-        // ...
-      },
     }),
     AutoImport({
       // targets to transform
@@ -107,8 +81,8 @@ export default defineConfig({
 
       // global imports to register
       imports: [
+        VueRouterAutoImports,
         "vue",
-        "vue-router",
         "pinia",
         // custom
         {
@@ -122,12 +96,6 @@ export default defineConfig({
             // default imports
             ["default", "axios"], // import { default as axios } from 'axios',
           ],
-        },
-        // example type import
-        {
-          from: "vue-router",
-          imports: ["RouteLocationRaw"],
-          type: true,
         },
       ],
 
@@ -225,4 +193,4 @@ export default defineConfig({
       dumpUnimportItems: "./json/auto-imports.json", // Default `false`
     }),
   ],
-});
+}));

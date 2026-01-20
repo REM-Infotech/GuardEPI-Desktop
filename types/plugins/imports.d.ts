@@ -84,7 +84,6 @@ declare global {
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
   const useId: typeof import('vue').useId
-  const useLink: typeof import('vue-router').useLink
   const useLoad: typeof import('../../app/stores/useLoad').default
   const useModel: typeof import('vue').useModel
   const useMyFetch: typeof import('@vueuse/core').useFetch
@@ -106,9 +105,6 @@ declare global {
   // @ts-ignore
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
-  // @ts-ignore
-  export type { RouteLocationRaw } from 'vue-router'
-  import('vue-router')
 }
 
 // for vue template auto import
@@ -194,7 +190,6 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
-    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLoad: UnwrapRef<typeof import('../../app/stores/useLoad')['default']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMyFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
