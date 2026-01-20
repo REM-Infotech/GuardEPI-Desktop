@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Branding from "@/assets/img/CrawJUDBranding.png";
+import Branding from "@/assets/img/Branding.png";
 </script>
 
 <template>

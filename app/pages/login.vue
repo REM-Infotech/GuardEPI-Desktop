@@ -23,7 +23,7 @@ class authService {
 
         userInfoRef.value = response.data.user;
 
-        router.push({ name: "/" });
+        router.push({ name: "/robot/listagem" });
       }
     } catch {}
 

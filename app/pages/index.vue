@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const mouted = ref(false);
+const isIndex = ref(false);
 const router = useRouter();
 onMounted(async () => {
+  isIndex.value = true;
   await new Promise((resolve) => setTimeout(resolve, 2000));
   router.push({ name: "/login" });
 });
@@ -10,7 +11,7 @@ onMounted(async () => {
 <template>
   <div class="branding">
     <Transition name="brand">
-      <div v-if="mouted">
+      <div v-if="isIndex">
         <CrawJUDBrand />
       </div>
     </Transition>
