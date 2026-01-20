@@ -4,3 +4,7 @@ onlyBuiltDependencies:
   - electron
   - electron-winstaller
   - esbuild
+
+overrides:
+  tar@<=7.5.2: '>=7.5.3'
+  tmp@<=0.2.3: '>=0.2.4'
