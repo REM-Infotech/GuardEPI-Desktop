@@ -7,7 +7,7 @@ import Projudi from "@/components/projudi.vue";
 import FormBot from "@/views/FormBot.vue";
 
 const botStore = useBotStore();
-const { listagem, formBotModal, selectedBot } = storeToRefs(botStore);
+const { listagem, formBotModal, selectedBot, queryBot } = storeToRefs(botStore);
 const imgSistema: Record<sistemasRobos, Component> = {
   PROJUDI: Projudi,
   ESAJ: Esaj,
@@ -25,8 +25,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <BContainer class="mt-5">
+  <BContainer class="mt-3">
     <FormBot />
+    <BFormGroup class="mb-3" label="Filtre aqui" floating>
+      <BFormInput placeholder="Filtro robô" v-model="queryBot" />
+    </BFormGroup>
     <TransitionGroup tag="div" name="bots" class="row row-bots">
       <div
         class="col-lg-3 col-xl-3 col-md-3 col-sm-3 p-2"

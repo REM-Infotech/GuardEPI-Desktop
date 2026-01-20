@@ -105,6 +105,7 @@ const iconTheme = () => {
   width: 100%;
   height: 55px;
   z-index: 9999;
+  margin-bottom: 9px;
 }
 
 .navbar-anim-enter-active,

@@ -28,7 +28,7 @@ export default defineStore(
             execucoesRef.value = execucoes;
             if (idExecucaoQueryRef.value) {
               const exec = execucoesRef.value.filter(
-                (item) => item.id_execucao === route.params?.id_execucao,
+                (item) => item.id_execucao === idExecucaoQueryRef.value,
               );
 
               if (exec.length === 1) {
