@@ -72,6 +72,7 @@ onMounted(async () => {
 .row-bots {
   overflow: auto;
   box-shadow: 0;
+  max-height: calc(100dvh - 160px);
 }
 
 .bots-enter-active,

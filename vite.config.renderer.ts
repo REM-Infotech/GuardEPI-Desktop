@@ -11,7 +11,6 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 
 import { defineConfig } from "vite";
-import renderer from "vite-plugin-electron-renderer";
 import vueDevTools from "vite-plugin-vue-devtools";
 
 import { BootstrapVueNextResolver } from "bootstrap-vue-next/resolvers";
@@ -192,11 +191,6 @@ export default defineConfig(({ mode }) => ({
 
       // Save unimport items into a JSON file for other tools to consume
       dumpUnimportItems: "./json/auto-imports.json", // Default `false`
-    }),
-    renderer({
-      resolve: {
-        "electron-store": { type: "esm" },
-      },
     }),
   ],
 }));
