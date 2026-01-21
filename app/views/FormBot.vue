@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FileAuth from "./bot/FileAuth.vue";
 import MultipleFiles from "./bot/MultipleFiles.vue";
+const { botNamespace } = loggerStore();
 
 const botstore = useBotStore();
 const load = useLoad();
